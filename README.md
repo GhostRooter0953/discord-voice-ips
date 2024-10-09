@@ -67,7 +67,7 @@
 
 4. Запустите скрипт:
 ```bash
-/opt/tmp/discord-voice-ips # ./script.sh
+/opt/tmp/discord-voice-ips # ./parser-voice-ip.sh
 ```
 
 ### Процесс работы скрипта
