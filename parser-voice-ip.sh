@@ -28,7 +28,7 @@ count=0  # Инициализируем счётчик обработанных 
 
 while IFS= read -r domain_name; do
     # Резолвим IP адреса и выкидываем лишнее
-    ip=$(dig A +short "$domain_name" | grep -v "timed out" | grep -v "no servers")
+    ip=$(dig A +short "$domain_name" | grep -Evi  "(warning|timed out|no servers)")
 
     # Проверяем, что спарсили IP, а не пустоту
     if [ -n "$ip" ]; then
