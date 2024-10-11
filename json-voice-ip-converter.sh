@@ -13,13 +13,13 @@ for region_dir in regions/*; do
 
     if [[ -f "$input_file" ]]; then
         echo "Конвертируем в JSON: $region_name"
-        
+
         regional_output_file="./regions/$region_name/amnezia-${region_name}-voice-ip.json"
         > "$regional_output_file"
         echo "[" >> "$regional_output_file"
-        
+
         regional_first_entry=true
-        
+
         while IFS= read -r line; do
             hostname=$(echo "$line" | cut -d ':' -f 1 | xargs)
             ip=$(echo "$line" | cut -d ':' -f 2 | xargs)
@@ -31,29 +31,26 @@ for region_dir in regions/*; do
             else
                 echo "," >> "$output_file"
             fi
-            
+
             echo "    $json_entry" >> "$output_file"
 
-            # Запись в файл региона
             if [ "$regional_first_entry" = true ]; then
                 regional_first_entry=false
             else
                 echo "," >> "$regional_output_file"
             fi
-            
+
             echo "    $json_entry" >> "$regional_output_file"
 
         done < "$input_file"
-        
-        # Закрытие файла для конкретного региона
+
         echo "]" >> "$regional_output_file"
-        
+
     else
         echo "Куда пропал: $input_file?"
     fi
 done
 
-# Закрытие общего файла для всех регионов
 echo "]" >> "$output_file"
 
-echo "Содержимое всех списков записано в $output_file и отдельных файлах по регионам."
+echo "Содержимое всех списков записано в $output_file."
