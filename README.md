@@ -18,26 +18,25 @@
 - `voice-domains-generator.sh` - генератор и резолвер доменов голосовых серверов Discord 
 - `voice-domains-generator-fast.sh` [**САМОЕ ОПТИМАЛЬНОЕ РЕШЕНИЕ**] - тоже самое, но в разы шустрее (_зависит от CPU_) 
 - `voice-ip-parser.sh` - IP резолвер по списку `discord-voice-domains-list` с функцией создания и добавления IP в IPset список `unblock`
+- `json-voice-ip-converter.sh` - скрипт преобразовывает в JSON списки IP голосовых серверов Discord для последующего ручного импорта в `Amnezia`
 
-## Использование IPset
-
-Несколько шагов:
+## Использование с IPset
 
 1. **Создайте новый список `unblock`**:
 ```bash
-~# ipset create unblock hash:net
+$ ipset create unblock hash:net
 ```
 2. **Склонируйте этот репозиторий**:
 ```bash
-~# git clone https://github.com/GhostRooter0953/discord-voice-ips.git
+$ git clone https://github.com/GhostRooter0953/discord-voice-ips.git
 ```
 3. **Перейдите в директорию с клонированным репозиторием**:
 ```bash
-~# cd discord-voice-ips
+$ cd discord-voice-ips
 ```
 4. **Добавьте адреса из файла `discord-voice-ipset-list` в ваш ipset**:
 ```bash
-~# ipset restore < discord-voice-ipset-list
+$ ipset restore < discord-voice-ipset-list
 ```
 5. **Добавьте соответствующее правило в ваш фаерволл, чтобы настроить маршрутизацию**
 ```bash
@@ -63,17 +62,17 @@ _p.s. ещё можно использовать менее элегантное
 
 2. Склонируйте репозиторий:
 ```bash
-   git clone https://github.com/GhostRooter0953/discord-voice-ips.git
+$ git clone https://github.com/GhostRooter0953/discord-voice-ips.git
 ```
 
 3. Перейдите в директорию репо:
 ```bash
-/opt/tmp # cd discord-voice-ips
+$ cd discord-voice-ips
 ```
 
 4. Запустите скрипт:
 ```bash
-/opt/tmp/discord-voice-ips # ./voice-ip-parser.sh
+$ ./voice-ip-parser.sh
 ```
 
 ### Процесс работы скрипта
@@ -100,7 +99,7 @@ _p.s. ещё можно использовать менее элегантное
 ### Пример запуска в ручном режиме (_без опций_)
 
 ```bash
-/opt/tmp # ./voice-ip-parser.sh
+$ ./voice-ip-parser.sh
 Очистка IP листов
 Начинаем парсить IP голосовых серверов Discord
 Парсим... Прогресс: 100%
@@ -120,7 +119,7 @@ _p.s. ещё можно использовать менее элегантное
 
 Пример запуска в автоматическом режиме:
 ```bash
-/opt/tmp # ./voice-ip-parser.sh auto
+$ ./voice-ip-parser.sh auto
 Очистка IP листов
 Начинаем парсить IP голосовых серверов Discord
 Парсим... Прогресс: 100%
@@ -133,7 +132,7 @@ _p.s. ещё можно использовать менее элегантное
 
 Пример запуска в режиме `noipset`:
 ```bash
-/opt/tmp # ./voice-ip-parser.sh noipset
+$ ./voice-ip-parser.sh noipset
 Очистка IP листов
 Начинаем парсить IP голосовых серверов Discord
 Парсим... Прогресс: 100%
@@ -149,7 +148,7 @@ _p.s. ещё можно использовать менее элегантное
    - ipset
 - Для получения информации об использовании утилиты ipset можно использовать следующую команду:
 ```bash
-man ipset
+$ man ipset
 ```
 ## Скрипт `voice-domains-generator-fast`
 
@@ -165,17 +164,17 @@ man ipset
 
 2. Склонируйте репозиторий:
 ```bash
-   git clone https://github.com/GhostRooter0953/discord-voice-ips.git
+$ git clone https://github.com/GhostRooter0953/discord-voice-ips.git
 ```
 
 3. Перейдите в директорию репо:
 ```bash
-/opt/tmp # cd discord-voice-ips
+$ cd discord-voice-ips
 ```
 
 4. Запустите скрипт с опциональным аргументом в виде валидного `региона` либо без:
 ```bash
-  ./voice-domains-generator-fast dubai
+$ ./voice-domains-generator-fast dubai
 ```
 Если аргументы не переданы, зарезолвятся домены регионов по 'умолчанию': 
 - russia
@@ -222,20 +221,6 @@ $ ./voice-domains-generator-fast.sh
 Время выполнения: 00:00:43
 Доменов зарезолвили: 67
 
-Генерируем и резолвим домены для региона: finland
-Прогресс: 100%
-Успех!
-Время запуска: 10.10.2024 в 21:01:36
-Время выполнения: 00:00:45
-Доменов зарезолвили: 134
-
-Генерируем и резолвим домены для региона: frankfurt
-Прогресс: 100%
-Успех!
-Время запуска: 10.10.2024 в 21:02:21
-Время выполнения: 00:00:47
-Доменов зарезолвили: 299
-
 ...и так далее по дефолтному списку...
 ```
 
@@ -251,7 +236,7 @@ $ ./voice-domains-generator-fast.sh
 
 ### Пример работы скрипта `voice-domains-generator`:
 ```sh
-./voice-domains-generator.sh singapore
+$ ./voice-domains-generator.sh singapore
 Генерируем и резолвим домены для региона: singapore
 Прогресс: 100%
 Успех!
@@ -263,6 +248,30 @@ $ ./voice-domains-generator-fast.sh
 ### Заключение
 
 Хотя оба скрипта выполняют одну и ту же основную задачу — генерацию и резолвинг доменных имен, они различаются по стилю, эффективности и методам обработки данных. Второй скрипт более простой, но менее эффективный из-за последовательной обработки запросов к DNS-серверу.
+
+## Скрипт `json-voice-ip-converter`
+
+- **Запускать** его нужно после того как отработает генератор (_чтобы конвертировать актуальные списки_)
+- Результат работы автоматически запишется в каждый фолдер региона в формате **amnezia-`region`-voice-ip.json**
+- В корень репо также запишется общий список всех регионов в формате **amnezia-voice-ip.json**
+
+### Пример работы скрипта `json-voice-ip-converter`:
+
+```bash
+$ ./json-voice-ip-converter.sh
+Конвертируем в JSON: bucharest
+Конвертируем в JSON: dubai
+Конвертируем в JSON: finland
+Конвертируем в JSON: frankfurt
+Конвертируем в JSON: madrid
+Конвертируем в JSON: milan
+Конвертируем в JSON: rotterdam
+Конвертируем в JSON: russia
+Конвертируем в JSON: singapore
+Конвертируем в JSON: stockholm
+Конвертируем в JSON: warsaw
+Содержимое всех списков записано в amnezia-voice-ip.json.
+```
 
 ## To Do
 
