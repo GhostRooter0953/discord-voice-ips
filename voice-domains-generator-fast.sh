@@ -21,39 +21,39 @@ check_domain() {
 
     mkdir -p "$directory"
 
-    ip=$(dig A +short "$domain" | grep -Evi  "(warning|timed out|no servers)")
-    
+    ip=$(dig A +short "$domain" | grep -Evi  "(warning|timed out|no servers|mismatch)")
+
     if [ -n "$ip" ]; then
         echo "$domain: $ip" >> "$directory"/"$region"-voice-resolved
         echo "$domain" >> "$directory"/"$region"-voice-domains
         echo "$ip" >> "$directory"/"$region"-voice-ip
         echo "add unblock $ip" >> "$directory"/"$region"-voice-ipset
     fi
-    
+
     {
         flock -x 200
         count=$(<"$temp_file")
         count=$((count + 1))
-        
+
         echo $count > "$temp_file"
-        
+
         percent=$(( (count * 100) / total_domains ))
-        
+
         printf "\rПрогресс: %d%%" "$percent"
     } 200>"$temp_file.lock"
 }
 
-export -f check_domain 
+export -f check_domain
 export total_domains
 
-for region in "${regions[@]}"; do 
+for region in "${regions[@]}"; do
     echo ""
     echo "Генерируем и резолвим домены для региона: $region"
 
     directory="./regions/$region"
 
-    if [ -d "$directory" ]; then 
-        rm -rf "${directory:?}/"* 
+    if [ -d "$directory" ]; then
+        rm -rf "${directory:?}/"*
     fi
 
     temp_file=$(mktemp)
@@ -67,7 +67,7 @@ for region in "${regions[@]}"; do
 
    end_time=$(date +%s)
    execution_time=$((end_time - start_time))
-   domains_resolved=$(wc -l < "$directory"/"$region"-voice-voice-resolved)
+   domains_resolved=$(wc -l < "$directory"/"$region"-voice-resolved)
 
    echo ""
    echo "Успех!"

@@ -12,10 +12,10 @@ check_domain() {
     domain=$1
     region=$2
     directory="./regions/$region"
-    
+
     mkdir -p "$directory"
 
-    ip=$(dig A +short "$domain" | grep -Evi "(warning|timed out|no servers)")
+    ip=$(dig A +short "$domain" | grep -Evi "(warning|timed out|no servers|mismatch)")
 
     [ -n "$ip" ] && {
         echo "$domain: $ip" >> "$directory/$region-voice-resolved"
@@ -25,7 +25,7 @@ check_domain() {
     }
 }
 
-for region in $regions; do 
+for region in $regions; do
     echo "\nГенерируем и резолвим домены для региона: $region"
 
     rm -rf "$directory/*"
@@ -38,13 +38,13 @@ for region in $regions; do
    for i in $(seq 1 "$total_domains"); do
        check_domain "${region}${i}.discord.gg" "$region"
        resolved_count=$((resolved_count + 1))
-       
+
        printf "\rПрогресс: $(( (resolved_count * 100) / total_domains ))%%"
    done
 
    end_time=$(date +%s)
    execution_time=$((end_time - start_time))
-   domains_resolved=$(wc -l < "$directory"/"$region"-voice-voice-resolved)
+   domains_resolved=$(wc -l < "$directory"/"$region"-voice-resolved)
 
    echo ""
    echo "Успех!"
