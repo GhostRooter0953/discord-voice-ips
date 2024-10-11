@@ -18,7 +18,7 @@ check_domain() {
     ip=$(dig A +short "$domain" | grep -Evi "(warning|timed out|no servers)")
 
     [ -n "$ip" ] && {
-        echo "$domain: $ip" >> "$directory/$region-voice-voice-resolved"
+        echo "$domain: $ip" >> "$directory/$region-voice-resolved"
         echo "$domain" >> "$directory/$region-voice-domains"
         echo "$ip" >> "$directory/$region-voice-ip"
         echo "add unblock $ip" >> "$directory/$region-voice-ipset"
