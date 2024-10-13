@@ -5,8 +5,7 @@ import socket
 import json
 
 # Загружаем переменные из .env файла
-load_dotenv()
-
+load_dotenv(override=True)
 
 # Функция для получения IP-адресов из хоста
 def get_ip_from_host(host):
@@ -34,6 +33,7 @@ def get_ips_from_hosts(file_path, extended_json_file):
         panic_message(f"File not found: {e}")
 
     # Дозаполнение из extended_json_file
+    print("Дозаполнение пропущенных хостов...")
     extended_host_ips = get_ips_from_json(extended_json_file)
     ip_addresses.update(extended_host_ips)  # Обновляем множество новыми IP
 
@@ -52,16 +52,9 @@ def get_ips_from_json(json_file):
 
 # Шаг 4. Формирование конфигурации и запись в файл
 def generate_warp_conf(ip_addresses, output_file):
-    # Загружаем данные из .env файла
-    private_key = os.getenv("PrivateKey")
-    address = os.getenv("Address")
-    dns = os.getenv("DNS")
-    public_key = os.getenv("PublicKey")
-    endpoint = os.getenv("Endpoint")
-
-    if not (private_key and address and dns and public_key and endpoint):
-        panic_message("Заполните все поля .env!")
-
+    # Чтение данных из .env
+    print("Проверка данных из окружения...")
+    private_key, address, dns, public_key, endpoint = get_env_data()
     # Формируем шаблон конфигурации с данными из .env
     template = f"""
 [Interface]
@@ -88,3 +81,18 @@ Endpoint = {endpoint}
             f.write(template)
     except FileNotFoundError as e:
         panic_message(f"File not found: {e}")
+
+
+def get_env_data():
+    # Чтение данных из .env
+    print("Чтение данных из окружения...")
+    load_dotenv(override=True)
+    private_key = os.getenv('PrivateKey')
+    address = os.getenv('Address')
+    dns = os.getenv('DNS')
+    public_key = os.getenv('PublicKey')
+    endpoint = os.getenv('Endpoint')
+    if not (private_key and address and dns and public_key and endpoint):
+        panic_message("Заполните все поля конфигурации!")
+
+    return private_key, address, dns, public_key, endpoint

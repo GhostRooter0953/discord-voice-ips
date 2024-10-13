@@ -10,6 +10,10 @@ def find_project_root(current_path, marker='.git'):
     return None
 
 
+class ConfigurationError(Exception):
+    pass
+
+
 def panic_message(message):
-    print(f"PANIC: {message}")
-    exit(1)  # Завершаем выполнение программы с кодом ошибки 1
+    print(f"Ошибка выполнения программы: {message}")
+    raise ConfigurationError(message)

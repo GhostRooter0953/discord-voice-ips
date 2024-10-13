@@ -4,7 +4,7 @@ from dotenv import set_key
 import sys
 import io
 from datetime import datetime
-from utils import find_project_root
+from utils import find_project_root, ConfigurationError
 import wapr_generation as warp
 
 
@@ -18,6 +18,9 @@ def create_gui():
         set_key('.env', 'PublicKey', public_key_entry.get())
         set_key('.env', 'Endpoint', endpoint_entry.get())
 
+        # Перезагрузка .env файла
+        warp.load_dotenv()
+
         # Перенаправление вывода консоли в текстовый виджет
         old_stdout = sys.stdout
         sys.stdout = mystdout = io.StringIO()
@@ -25,6 +28,10 @@ def create_gui():
         try:
             # Выполнение основной логики
             main()
+        except ConfigurationError as e:
+            # Вывод ошибки в текстовый виджет
+            console_output.delete(1.0, tk.END)
+            console_output.insert(tk.END, f"Error: {e}\n")
         finally:
             # Восстановление стандартного вывода
             sys.stdout = old_stdout
@@ -72,6 +79,7 @@ def create_gui():
 
 
 def main():
+    warp.get_env_data()
     # Пути к скриптам и файлам
     root_path = find_project_root(os.path.dirname(__file__), ".git")
     hosts_file = os.path.join(root_path, 'discord-domains-list')
@@ -79,20 +87,24 @@ def main():
     domains_json_file = os.path.join(root_path, "amnezia-discord-domains.json")
 
     # Шаг 1. Получаем IP-адреса с хостов
+    print("Получаем IP-адреса доменов...")
     host_ips = warp.get_ips_from_hosts(hosts_file, domains_json_file)
 
     # Шаг 4. Получаем IP-адреса из сгенерированного JSON файла
+    print("Получаем IP-адреса из голосовых каналов...")
     region_ips = warp.get_ips_from_json(region_json_file)
 
     # Объединяем все IP-адреса
     all_ips = host_ips + region_ips
 
     # Шаг 5. Генерация файла конфигурации
+    print("Генерация файла конфигурации...")
     current_date = datetime.now().strftime("%Y-%m-%d")
     output_file = f'warp{current_date}.conf'
     warp.generate_warp_conf(all_ips, output_file)
 
-    print(f"Конфигурационный файл '{output_file}' успешно создан.")
+    print(f"Конфигурационный файл '{output_file}' успешно создан!")
+    print(f"Его можно найти в '{os.path.abspath(output_file)}'")
 
 
 if __name__ == "__main__":
