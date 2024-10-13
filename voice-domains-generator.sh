@@ -11,7 +11,6 @@ kill -sighup $(pgrep dnsmasq) 2> /dev/null || echo "Куда же подевал
 check_domain() {
     domain=$1
     region=$2
-    directory="./regions/$region"
 
     mkdir -p "$directory"
 
@@ -27,8 +26,13 @@ check_domain() {
 
 for region in $regions; do
     echo "\nГенерируем и резолвим домены для региона: $region"
+    directory="./regions/$region"
 
-    rm -rf "$directory/*"
+    [ -z "$directory" ] && {
+        echo 'Чуть не сделали rm -rf /*'
+        exit 1
+    }
+    rm -rf "${directory:?}"/*
 
     start_time=$(date +%s)
     start_date=$(date +'%d.%m.%Y в %H:%M:%S')
