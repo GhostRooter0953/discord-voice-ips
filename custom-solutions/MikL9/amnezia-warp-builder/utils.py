@@ -9,6 +9,7 @@ def find_project_root(current_path, marker='.git'):
         current_path = os.path.dirname(current_path)
     return None
 
+
 def panic_message(message):
     print(f"PANIC: {message}")
     exit(1)  # Завершаем выполнение программы с кодом ошибки 1
