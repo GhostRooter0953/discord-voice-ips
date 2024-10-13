@@ -55,7 +55,7 @@ all_domains_list="./discord-voice-domains-list"
 > "$all_domains_list"
 
 for region in "${regions[@]}"; do
-    echo "\nГенерируем и резолвим домены для региона: $region"
+    echo -e "\nГенерируем и резолвим домены для региона: $region"
     directory="./regions/$region"
 
     [ -z "$directory" ] && {
@@ -73,9 +73,9 @@ for region in "${regions[@]}"; do
 
    seq 1 "$total_domains" | parallel -j 60 check_domain "${region}{}.discord.gg" "$region" "$temp_file"
 
-   sort "$directory/$region-voice-ip" >> "$all_ip_list"
-   sort "$directory/$region-voice-ipset" >> "$all_ipset_list"
-   sort "$directory/$region-voice-domains" >> "$all_domains_list"
+   sort "$directory/$region-voice-ip" 2> /dev/null >> "$all_ip_list"
+   sort "$directory/$region-voice-ipset" 2> /dev/null >> "$all_ipset_list"
+   sort "$directory/$region-voice-domains" 2> /dev/null >> "$all_domains_list"
 
    end_time=$(date +%s)
    execution_time=$((end_time - start_time))
@@ -93,4 +93,4 @@ for temp_file in "${temp_files[@]}"; do
 done
 
    ip_count=$(wc -l < "$all_ip_list")
-   echo "Спиоск "$all_ip_list" обновлён, зарезолвили $ip_count адреса(ов)"
+   echo -e "\nСписок "$all_ip_list" обновлён, зарезолвили $ip_count адреса(ов)\n"

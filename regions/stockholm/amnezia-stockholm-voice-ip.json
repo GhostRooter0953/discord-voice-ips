@@ -3,11 +3,13 @@
 ,
     {"hostname": "stockholm589.discord.gg", "ip": "66.22.237.145"}
 ,
+    {"hostname": "stockholm906.discord.gg", "ip": "66.22.237.135"}
+,
     {"hostname": "stockholm922.discord.gg", "ip": "66.22.237.141"}
 ,
-    {"hostname": "stockholm1131.discord.gg", "ip": "66.22.237.150"}
-,
     {"hostname": "stockholm1134.discord.gg", "ip": "66.22.237.26"}
+,
+    {"hostname": "stockholm1131.discord.gg", "ip": "66.22.237.150"}
 ,
     {"hostname": "stockholm1555.discord.gg", "ip": "66.22.237.148"}
 ,
@@ -29,11 +31,11 @@
 ,
     {"hostname": "stockholm2913.discord.gg", "ip": "66.22.237.136"}
 ,
-    {"hostname": "stockholm3038.discord.gg", "ip": "66.22.237.139"}
+    {"hostname": "stockholm3077.discord.gg", "ip": "66.22.237.156"}
 ,
     {"hostname": "stockholm3048.discord.gg", "ip": "66.22.237.16"}
 ,
-    {"hostname": "stockholm3077.discord.gg", "ip": "66.22.237.156"}
+    {"hostname": "stockholm3038.discord.gg", "ip": "66.22.237.139"}
 ,
     {"hostname": "stockholm3105.discord.gg", "ip": "66.22.237.143"}
 ,
@@ -42,6 +44,12 @@
     {"hostname": "stockholm3536.discord.gg", "ip": "66.22.237.24"}
 ,
     {"hostname": "stockholm3545.discord.gg", "ip": "66.22.237.5"}
+,
+    {"hostname": "stockholm3568.discord.gg", "ip": "66.22.237.133"}
+,
+    {"hostname": "stockholm3715.discord.gg", "ip": "66.22.237.25"}
+,
+    {"hostname": "stockholm3810.discord.gg", "ip": "66.22.237.9"}
 ,
     {"hostname": "stockholm3850.discord.gg", "ip": "66.22.237.38"}
 ,
@@ -57,7 +65,13 @@
 ,
     {"hostname": "stockholm5485.discord.gg", "ip": "66.22.237.41"}
 ,
+    {"hostname": "stockholm5620.discord.gg", "ip": "66.22.237.22"}
+,
+    {"hostname": "stockholm6152.discord.gg", "ip": "66.22.237.137"}
+,
     {"hostname": "stockholm6104.discord.gg", "ip": "66.22.237.164"}
+,
+    {"hostname": "stockholm6270.discord.gg", "ip": "66.22.237.45"}
 ,
     {"hostname": "stockholm6606.discord.gg", "ip": "66.22.237.155"}
 ,
@@ -71,13 +85,15 @@
 ,
     {"hostname": "stockholm7576.discord.gg", "ip": "66.22.237.165"}
 ,
-    {"hostname": "stockholm7719.discord.gg", "ip": "66.22.237.8"}
-,
     {"hostname": "stockholm7753.discord.gg", "ip": "66.22.237.40"}
+,
+    {"hostname": "stockholm7719.discord.gg", "ip": "66.22.237.8"}
 ,
     {"hostname": "stockholm7797.discord.gg", "ip": "66.22.237.19"}
 ,
     {"hostname": "stockholm7918.discord.gg", "ip": "66.22.237.37"}
+,
+    {"hostname": "stockholm7997.discord.gg", "ip": "66.22.237.7"}
 ,
     {"hostname": "stockholm8036.discord.gg", "ip": "66.22.237.21"}
 ,
@@ -104,6 +120,8 @@
     {"hostname": "stockholm9330.discord.gg", "ip": "66.22.237.12"}
 ,
     {"hostname": "stockholm9368.discord.gg", "ip": "66.22.237.27"}
+,
+    {"hostname": "stockholm9414.discord.gg", "ip": "66.22.237.18"}
 ,
     {"hostname": "stockholm9496.discord.gg", "ip": "66.22.237.15"}
 ,

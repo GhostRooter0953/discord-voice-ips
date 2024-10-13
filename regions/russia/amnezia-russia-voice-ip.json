@@ -35,31 +35,31 @@
 ,
     {"hostname": "russia1109.discord.gg", "ip": "66.22.217.51"}
 ,
-    {"hostname": "russia1290.discord.gg", "ip": "66.22.217.36"}
-,
     {"hostname": "russia1298.discord.gg", "ip": "66.22.217.169"}
 ,
     {"hostname": "russia1302.discord.gg", "ip": "66.22.216.179"}
+,
+    {"hostname": "russia1290.discord.gg", "ip": "66.22.217.36"}
 ,
     {"hostname": "russia1332.discord.gg", "ip": "66.22.217.56"}
 ,
     {"hostname": "russia1411.discord.gg", "ip": "66.22.217.115"}
 ,
-    {"hostname": "russia1461.discord.gg", "ip": "66.22.217.188"}
-,
     {"hostname": "russia1465.discord.gg", "ip": "66.22.216.191"}
 ,
     {"hostname": "russia1501.discord.gg", "ip": "66.22.217.150"}
 ,
-    {"hostname": "russia1700.discord.gg", "ip": "66.22.216.155"}
+    {"hostname": "russia1461.discord.gg", "ip": "66.22.217.188"}
 ,
     {"hostname": "russia1719.discord.gg", "ip": "66.22.217.202"}
 ,
     {"hostname": "russia1727.discord.gg", "ip": "66.22.217.23"}
 ,
-    {"hostname": "russia1740.discord.gg", "ip": "66.22.217.116"}
-,
     {"hostname": "russia1742.discord.gg", "ip": "66.22.216.148"}
+,
+    {"hostname": "russia1700.discord.gg", "ip": "66.22.216.155"}
+,
+    {"hostname": "russia1740.discord.gg", "ip": "66.22.217.116"}
 ,
     {"hostname": "russia1838.discord.gg", "ip": "66.22.217.171"}
 ,
@@ -87,13 +87,13 @@
 ,
     {"hostname": "russia2554.discord.gg", "ip": "66.22.217.38"}
 ,
-    {"hostname": "russia2652.discord.gg", "ip": "66.22.217.40"}
-,
-    {"hostname": "russia2654.discord.gg", "ip": "66.22.217.168"}
-,
     {"hostname": "russia2664.discord.gg", "ip": "66.22.217.114"}
 ,
     {"hostname": "russia2686.discord.gg", "ip": "66.22.217.185"}
+,
+    {"hostname": "russia2652.discord.gg", "ip": "66.22.217.40"}
+,
+    {"hostname": "russia2654.discord.gg", "ip": "66.22.217.168"}
 ,
     {"hostname": "russia2698.discord.gg", "ip": "66.22.217.136"}
 ,
@@ -109,9 +109,9 @@
 ,
     {"hostname": "russia3432.discord.gg", "ip": "66.22.217.25"}
 ,
-    {"hostname": "russia3500.discord.gg", "ip": "66.22.216.126"}
-,
     {"hostname": "russia3525.discord.gg", "ip": "66.22.217.29"}
+,
+    {"hostname": "russia3500.discord.gg", "ip": "66.22.216.126"}
 ,
     {"hostname": "russia3536.discord.gg", "ip": "66.22.216.193"}
 ,
@@ -119,9 +119,9 @@
 ,
     {"hostname": "russia3618.discord.gg", "ip": "66.22.216.213"}
 ,
-    {"hostname": "russia3649.discord.gg", "ip": "66.22.216.201"}
-,
     {"hostname": "russia3674.discord.gg", "ip": "66.22.217.145"}
+,
+    {"hostname": "russia3649.discord.gg", "ip": "66.22.216.201"}
 ,
     {"hostname": "russia3717.discord.gg", "ip": "66.22.217.201"}
 ,
@@ -133,11 +133,11 @@
 ,
     {"hostname": "russia4022.discord.gg", "ip": "66.22.216.28"}
 ,
-    {"hostname": "russia4031.discord.gg", "ip": "66.22.217.198"}
-,
     {"hostname": "russia4037.discord.gg", "ip": "66.22.216.187"}
 ,
     {"hostname": "russia4061.discord.gg", "ip": "66.22.216.36"}
+,
+    {"hostname": "russia4031.discord.gg", "ip": "66.22.217.198"}
 ,
     {"hostname": "russia4102.discord.gg", "ip": "66.22.217.49"}
 ,
@@ -145,9 +145,9 @@
 ,
     {"hostname": "russia4185.discord.gg", "ip": "66.22.216.188"}
 ,
-    {"hostname": "russia4400.discord.gg", "ip": "66.22.216.22"}
-,
     {"hostname": "russia4419.discord.gg", "ip": "66.22.217.189"}
+,
+    {"hostname": "russia4400.discord.gg", "ip": "66.22.216.22"}
 ,
     {"hostname": "russia4448.discord.gg", "ip": "66.22.217.31"}
 ,
@@ -157,13 +157,13 @@
 ,
     {"hostname": "russia4606.discord.gg", "ip": "66.22.217.196"}
 ,
-    {"hostname": "russia4656.discord.gg", "ip": "66.22.217.192"}
-,
     {"hostname": "russia4657.discord.gg", "ip": "66.22.217.57"}
 ,
-    {"hostname": "russia4730.discord.gg", "ip": "66.22.216.34"}
+    {"hostname": "russia4656.discord.gg", "ip": "66.22.217.192"}
 ,
     {"hostname": "russia4725.discord.gg", "ip": "66.22.216.200"}
+,
+    {"hostname": "russia4730.discord.gg", "ip": "66.22.216.34"}
 ,
     {"hostname": "russia4842.discord.gg", "ip": "66.22.217.194"}
 ,
@@ -171,17 +171,17 @@
 ,
     {"hostname": "russia4980.discord.gg", "ip": "66.22.216.189"}
 ,
-    {"hostname": "russia5095.discord.gg", "ip": "66.22.216.159"}
-,
     {"hostname": "russia5097.discord.gg", "ip": "66.22.217.128"}
 ,
-    {"hostname": "russia5157.discord.gg", "ip": "66.22.217.47"}
+    {"hostname": "russia5095.discord.gg", "ip": "66.22.216.159"}
 ,
     {"hostname": "russia5162.discord.gg", "ip": "66.22.217.27"}
 ,
-    {"hostname": "russia5225.discord.gg", "ip": "66.22.216.32"}
+    {"hostname": "russia5157.discord.gg", "ip": "66.22.217.47"}
 ,
     {"hostname": "russia5286.discord.gg", "ip": "66.22.216.205"}
+,
+    {"hostname": "russia5225.discord.gg", "ip": "66.22.216.32"}
 ,
     {"hostname": "russia5414.discord.gg", "ip": "66.22.216.12"}
 ,
@@ -193,9 +193,9 @@
 ,
     {"hostname": "russia5553.discord.gg", "ip": "66.22.216.144"}
 ,
-    {"hostname": "russia5644.discord.gg", "ip": "66.22.216.24"}
-,
     {"hostname": "russia5689.discord.gg", "ip": "66.22.217.15"}
+,
+    {"hostname": "russia5644.discord.gg", "ip": "66.22.216.24"}
 ,
     {"hostname": "russia5733.discord.gg", "ip": "66.22.216.156"}
 ,
@@ -233,9 +233,9 @@
 ,
     {"hostname": "russia7011.discord.gg", "ip": "66.22.216.37"}
 ,
-    {"hostname": "russia7056.discord.gg", "ip": "66.22.217.190"}
-,
     {"hostname": "russia7085.discord.gg", "ip": "66.22.216.141"}
+,
+    {"hostname": "russia7056.discord.gg", "ip": "66.22.217.190"}
 ,
     {"hostname": "russia7099.discord.gg", "ip": "66.22.217.28"}
 ,
@@ -275,11 +275,11 @@
 ,
     {"hostname": "russia8510.discord.gg", "ip": "66.22.216.45"}
 ,
-    {"hostname": "russia8649.discord.gg", "ip": "66.22.217.186"}
-,
     {"hostname": "russia8693.discord.gg", "ip": "66.22.217.193"}
 ,
     {"hostname": "russia8703.discord.gg", "ip": "66.22.216.130"}
+,
+    {"hostname": "russia8649.discord.gg", "ip": "66.22.217.186"}
 ,
     {"hostname": "russia8760.discord.gg", "ip": "66.22.216.129"}
 ,
@@ -291,43 +291,43 @@
 ,
     {"hostname": "russia9097.discord.gg", "ip": "66.22.217.14"}
 ,
-    {"hostname": "russia9229.discord.gg", "ip": "66.22.216.10"}
-,
     {"hostname": "russia9253.discord.gg", "ip": "66.22.217.24"}
 ,
     {"hostname": "russia9264.discord.gg", "ip": "66.22.217.111"}
+,
+    {"hostname": "russia9229.discord.gg", "ip": "66.22.216.10"}
 ,
     {"hostname": "russia9345.discord.gg", "ip": "66.22.216.212"}
 ,
     {"hostname": "russia9372.discord.gg", "ip": "66.22.217.13"}
 ,
-    {"hostname": "russia9395.discord.gg", "ip": "66.22.217.10"}
-,
     {"hostname": "russia9423.discord.gg", "ip": "66.22.217.18"}
 ,
-    {"hostname": "russia9458.discord.gg", "ip": "66.22.217.11"}
-,
-    {"hostname": "russia9462.discord.gg", "ip": "66.22.217.133"}
-,
-    {"hostname": "russia9482.discord.gg", "ip": "66.22.216.9"}
+    {"hostname": "russia9395.discord.gg", "ip": "66.22.217.10"}
 ,
     {"hostname": "russia9488.discord.gg", "ip": "66.22.216.13"}
+,
+    {"hostname": "russia9482.discord.gg", "ip": "66.22.216.9"}
 ,
     {"hostname": "russia9521.discord.gg", "ip": "66.22.216.184"}
 ,
     {"hostname": "russia9548.discord.gg", "ip": "66.22.217.43"}
 ,
-    {"hostname": "russia9602.discord.gg", "ip": "66.22.217.33"}
+    {"hostname": "russia9458.discord.gg", "ip": "66.22.217.11"}
+,
+    {"hostname": "russia9462.discord.gg", "ip": "66.22.217.133"}
 ,
     {"hostname": "russia9619.discord.gg", "ip": "66.22.217.41"}
 ,
-    {"hostname": "russia9658.discord.gg", "ip": "66.22.216.195"}
+    {"hostname": "russia9602.discord.gg", "ip": "66.22.217.33"}
 ,
-    {"hostname": "russia9733.discord.gg", "ip": "66.22.216.190"}
+    {"hostname": "russia9658.discord.gg", "ip": "66.22.216.195"}
 ,
     {"hostname": "russia9732.discord.gg", "ip": "66.22.216.131"}
 ,
     {"hostname": "russia9771.discord.gg", "ip": "66.22.216.29"}
+,
+    {"hostname": "russia9733.discord.gg", "ip": "66.22.216.190"}
 ,
     {"hostname": "russia9942.discord.gg", "ip": "66.22.217.151"}
 ]
