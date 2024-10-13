@@ -46,15 +46,23 @@ check_domain() {
 export -f check_domain
 export total_domains
 
-for region in "${regions[@]}"; do
-    echo ""
-    echo "Генерируем и резолвим домены для региона: $region"
+all_ip_list="./discord-voice-ip-list"
+all_ipset_list="./discord-voice-ipset-list"
+all_domains_list="./discord-voice-domains-list"
 
+> "$all_ip_list"
+> "$all_ipset_list"
+> "$all_domains_list"
+
+for region in "${regions[@]}"; do
+    echo "\nГенерируем и резолвим домены для региона: $region"
     directory="./regions/$region"
 
-    if [ -d "$directory" ]; then
-        rm -rf "${directory:?}/"*
-    fi
+    [ -z "$directory" ] && {
+        echo 'Чуть не сделали rm -rf /*'
+        exit 1
+    }
+    rm -rf "${directory:?}"/*
 
     temp_file=$(mktemp)
     echo 0 > "$temp_file"
@@ -64,6 +72,10 @@ for region in "${regions[@]}"; do
     start_date=$(date +'%d.%m.%Y в %H:%M:%S')
 
    seq 1 "$total_domains" | parallel -j 60 check_domain "${region}{}.discord.gg" "$region" "$temp_file"
+
+   sort "$directory/$region-voice-ip" >> "$all_ip_list"
+   sort "$directory/$region-voice-ipset" >> "$all_ipset_list"
+   sort "$directory/$region-voice-domains" >> "$all_domains_list"
 
    end_time=$(date +%s)
    execution_time=$((end_time - start_time))
@@ -79,3 +91,6 @@ done
 for temp_file in "${temp_files[@]}"; do
    rm -f "$temp_file"
 done
+
+   ip_count=$(wc -l < "$all_ip_list")
+   echo "Спиоск "$all_ip_list" обновлён, зарезолвили $ip_count адреса(ов)"

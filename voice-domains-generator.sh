@@ -24,6 +24,14 @@ check_domain() {
     }
 }
 
+all_ip_list="./discord-voice-ip-list"
+all_ipset_list="./discord-voice-ipset-list"
+all_domains_list="./discord-voice-domains-list"
+
+> "$all_ip_list"
+> "$all_ipset_list"
+> "$all_domains_list"
+
 for region in $regions; do
     echo "\nГенерируем и резолвим домены для региона: $region"
     directory="./regions/$region"
@@ -46,6 +54,10 @@ for region in $regions; do
        printf "\rПрогресс: $(( (resolved_count * 100) / total_domains ))%%"
    done
 
+   sort "$directory/$region-voice-ip" >> "$all_ip_list"
+   sort "$directory/$region-voice-ipset" >> "$all_ipset_list"
+   sort "$directory/$region-voice-domains" >> "$all_domains_list"
+
    end_time=$(date +%s)
    execution_time=$((end_time - start_time))
    domains_resolved=$(wc -l < "$directory"/"$region"-voice-resolved)
@@ -56,3 +68,6 @@ for region in $regions; do
    echo "Время выполнения: $(date -ud "@$execution_time" +'%H:%M:%S')"
    echo "Доменов зарезолвили: $domains_resolved"
 done
+
+   ip_count=$(wc -l < "$all_ip_list")
+   echo "Спиоск "$all_ip_list" обновлён, зарезолвили $ip_count адреса(ов)"

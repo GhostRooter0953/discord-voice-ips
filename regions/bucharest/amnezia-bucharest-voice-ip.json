@@ -15,9 +15,9 @@
 ,
     {"hostname": "bucharest1729.discord.gg", "ip": "66.22.244.138"}
 ,
-    {"hostname": "bucharest1832.discord.gg", "ip": "66.22.244.145"}
-,
     {"hostname": "bucharest1838.discord.gg", "ip": "66.22.244.159"}
+,
+    {"hostname": "bucharest1832.discord.gg", "ip": "66.22.244.145"}
 ,
     {"hostname": "bucharest1896.discord.gg", "ip": "66.22.244.39"}
 ,
@@ -29,9 +29,9 @@
 ,
     {"hostname": "bucharest2232.discord.gg", "ip": "66.22.244.25"}
 ,
-    {"hostname": "bucharest2635.discord.gg", "ip": "66.22.244.22"}
-,
     {"hostname": "bucharest2637.discord.gg", "ip": "66.22.244.144"}
+,
+    {"hostname": "bucharest2635.discord.gg", "ip": "66.22.244.22"}
 ,
     {"hostname": "bucharest2697.discord.gg", "ip": "66.22.244.154"}
 ,
@@ -67,9 +67,9 @@
 ,
     {"hostname": "bucharest5334.discord.gg", "ip": "66.22.244.6"}
 ,
-    {"hostname": "bucharest5485.discord.gg", "ip": "66.22.244.15"}
-,
     {"hostname": "bucharest5424.discord.gg", "ip": "66.22.244.136"}
+,
+    {"hostname": "bucharest5485.discord.gg", "ip": "66.22.244.15"}
 ,
     {"hostname": "bucharest5503.discord.gg", "ip": "66.22.244.157"}
 ,
@@ -107,9 +107,9 @@
 ,
     {"hostname": "bucharest7981.discord.gg", "ip": "66.22.244.37"}
 ,
-    {"hostname": "bucharest8213.discord.gg", "ip": "66.22.244.153"}
-,
     {"hostname": "bucharest8178.discord.gg", "ip": "66.22.244.16"}
+,
+    {"hostname": "bucharest8213.discord.gg", "ip": "66.22.244.153"}
 ,
     {"hostname": "bucharest8275.discord.gg", "ip": "66.22.244.35"}
 ,
@@ -129,7 +129,7 @@
 ,
     {"hostname": "bucharest9417.discord.gg", "ip": "66.22.244.156"}
 ,
-    {"hostname": "bucharest9623.discord.gg", "ip": "66.22.244.41"}
-,
     {"hostname": "bucharest9592.discord.gg", "ip": "66.22.244.31"}
+,
+    {"hostname": "bucharest9623.discord.gg", "ip": "66.22.244.41"}
 ]
