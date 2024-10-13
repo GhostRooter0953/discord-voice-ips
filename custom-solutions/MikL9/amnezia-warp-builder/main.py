@@ -4,7 +4,7 @@ from dotenv import set_key
 import sys
 import io
 from datetime import datetime
-from utils import find_project_root, ConfigurationError
+from utils import find_root_path, ConfigurationError
 import wapr_generation as warp
 
 
@@ -81,7 +81,13 @@ def create_gui():
 def main():
     warp.get_env_data()
     # Пути к скриптам и файлам
-    root_path = find_project_root(os.path.dirname(__file__), ".git")
+    print("Валидация необходимых файлов проекта...")
+
+    root_path = find_root_path()
+    if root_path is None:
+        raise ValueError("root_path is not set")
+
+    print(f"Root path: {root_path}")
     hosts_file = os.path.join(root_path, 'discord-domains-list')
     region_json_file = os.path.join(root_path, 'amnezia-voice-ip.json')
     domains_json_file = os.path.join(root_path, "amnezia-discord-domains.json")

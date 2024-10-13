@@ -1,13 +1,17 @@
-import os
+import sys
+from pathlib import Path
 
 
-def find_project_root(current_path, marker='.git'):
-    current_path = os.path.abspath(current_path)
-    while current_path != os.path.dirname(current_path):
-        if marker in os.listdir(current_path):
-            return current_path
-        current_path = os.path.dirname(current_path)
-    return None
+def find_root_path():
+    # Получаем путь к исполняемому файлу
+    current_path = Path(sys.executable).resolve()
+
+    # Ищем корневую директорию проекта
+    for parent in current_path.parents:
+        if (parent / 'setup.py').exists() or (parent / '.git').exists():
+            return parent
+
+    return current_path
 
 
 class ConfigurationError(Exception):
