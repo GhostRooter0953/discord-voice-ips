@@ -8,7 +8,9 @@ def find_root_path():
 
     # Ищем корневую директорию проекта
     for parent in current_path.parents:
-        if (parent / 'setup.py').exists() or (parent / '.git').exists():
+        if parent.name == 'discord-voice-ips-master' or parent.name == 'discord-voice-ips-amneziaWG' or parent.name == 'discord-voice-ips':
+            return parent
+        if (parent / 'discord-domains-list').exists() or (parent / '.gitignore').exists():
             return parent
 
     return current_path
