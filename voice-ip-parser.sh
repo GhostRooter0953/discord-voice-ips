@@ -36,7 +36,7 @@ while IFS= read -r domain_name; do
         echo "$ip" >> discord-voice-ip-list
 
         # Также генерируем IPset список
-        echo "add unblock $ip" >> discord-voice-ipset-list
+        echo "add kvas $ip" >> discord-voice-ipset-list
     fi
 
     count=$((count + 1)) # Подкручиваем счётчик
@@ -53,12 +53,12 @@ echo -e "\nПарсинг завершён"
 
 # Проверка наличия ipset списка unblock
 if [ "$1" != "noipset" ]; then
-    if ! ipset list | grep -q "^Name: unblock$"; then
+    if ! ipset list | grep -q "^Name: kvas$"; then
         # Список 'unblock' не найден, запрашиваем у пользователя подтверждение на создание
         if [ "$1" != "auto" ]; then
             echo "Список 'unblock' не найден!"
             if confirm "Создаём список 'unblock'?"; then
-                ipset create unblock hash:ip
+                ipset create kvas hash:ip
                 echo "Список создан"
             else
                 echo "Пропускаем создание списка 'unblock'"
@@ -66,7 +66,7 @@ if [ "$1" != "noipset" ]; then
             fi
         else
             # Автоматический режим: создаем список без подтверждения
-            ipset create unblock hash:ip
+            ipset create kvas hash:ip
             echo "Список 'unblock' создан"
         fi
     fi
@@ -74,14 +74,14 @@ if [ "$1" != "noipset" ]; then
     # Запрос на очистку списка unblock только если он существует
     if [ "$1" != "auto" ]; then
         if confirm "Чистим список 'unblock'?"; then
-            ipset flush unblock
+            ipset flush kvas
             echo "Список 'unblock' очищен"
         else
             echo "Пропускаем очистку 'unblock'"
         fi
     else
         # Автоматический режим: очищаем список без подтверждения
-        ipset flush unblock
+        ipset flush kvas
         echo "Список 'unblock' очищен"
     fi
 
