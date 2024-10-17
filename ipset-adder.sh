@@ -48,14 +48,14 @@ if [[ "$mode" == "auto" ]]; then
     generate_ipset_list "$main_ip_list_file" "$main_ipset_list_file" "$ipset_name"
     generate_ipset_list "$voice_ip_list_file" "$voice_ipset_list_file" "$ipset_name"
 
-    if ! sudo ipset list "$ipset_name" > /dev/null 2>&1; then
-        sudo ipset create "$ipset_name" hash:ip
+    if ! ipset list "$ipset_name" > /dev/null 2>&1; then
+        ipset create "$ipset_name" hash:ip
         echo -e "${GREEN}IPset список '$ipset_name' создан.${NC}"
     else
         echo -e "${GREEN}IPset список '$ipset_name' уже существует.${NC}"
     fi
 
-    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
+    existing_ips=$(ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
 
     declare -A existing_ips_array
     while IFS= read -r ip; do
@@ -84,7 +84,7 @@ if [[ "$mode" == "auto" ]]; then
     done
 
     if [[ -s "$tmp_ipset_restore_file" ]]; then
-        sudo ipset restore < "$tmp_ipset_restore_file"
+        ipset restore < "$tmp_ipset_restore_file"
         count=$(wc -l < "$tmp_ipset_restore_file")
         echo -e "${GREEN}Загружено $count IP адреса(ов) в список '$ipset_name'.${NC}"
     else
@@ -141,15 +141,15 @@ else
         fi
     done
 
-    if ! sudo ipset list "$ipset_name" > /dev/null 2>&1; then
+    if ! ipset list "$ipset_name" > /dev/null 2>&1; then
         echo -e "${YELLOW}IPset список '$ipset_name' не найден. Создаем...${NC}"
-        sudo ipset create "$ipset_name" hash:ip
+        ipset create "$ipset_name" hash:ip
         echo -e "${GREEN}IPset список '$ipset_name' создан.${NC}"
     else
         echo -e "${GREEN}IPset список '$ipset_name' уже существует.${NC}"
     fi
 
-    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
+    existing_ips=$(ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
 
     declare -A existing_ips_array
     while IFS= read -r ip; do
@@ -267,7 +267,7 @@ else
     done
 
     if [[ -s "$tmp_ipset_restore_file" ]]; then
-        sudo ipset restore < "$tmp_ipset_restore_file"
+        ipset restore < "$tmp_ipset_restore_file"
         count=$(wc -l < "$tmp_ipset_restore_file")
         echo -e "${GREEN}Загружено $count IP адреса(ов) в список '$ipset_name'.${NC}"
     else
