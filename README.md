@@ -211,6 +211,6 @@ discord-voice-ips/
 
 ## To Do
 
-- Сканер и резолвер сабдоменов, т.к. периодчески возникают подобные [сиутации](https://github.com/GhostRooter0953/discord-voice-ips/issues/1#issuecomment-2408466714)
+- Сканер и резолвер сабдоменов, т.к. периодчески возникают подобные [ситуации](https://github.com/GhostRooter0953/discord-voice-ips/issues/1#issuecomment-2408466714)
 - Механизм автоматической актуализации списков в репозитории
 ---
