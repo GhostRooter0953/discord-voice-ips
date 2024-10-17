@@ -32,10 +32,10 @@
 - **regions/**
 Содержит папки по регионам с результатами резолвинга голосовых серверов.
   - **\<region\>/**
-    - `\<region\>-voice-domains` — список зарезолвленных доменов.
-    - `\<region\>-voice-ip` — список IP-адресов.
-    - `\<region\>-voice-ipset` — IPSet список для региона.
-    - `\<region\>-voice-resolved` — сопоставление доменов и IP.
+    - `<region>-voice-domains` — список зарезолвленных доменов.
+    - `<region>-voice-ip` — список IP-адресов.
+    - `<region>-voice-ipset` — IPSet список для региона.
+    - `<region>-voice-resolved` — сопоставление доменов и IP.
 - **voice_domains/**
   - `discord-voice-domains-list` — объединённый список доменов голосовых серверов.
   - `discord-voice-ip-list` — объединённый список IP-адресов.
