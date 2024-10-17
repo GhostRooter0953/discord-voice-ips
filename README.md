@@ -10,18 +10,17 @@
 
 ## Структура Репозитория
 
-- `discord-domains-list` - список доменных имён Discord
-- `amnezia-discord-domains.json` - тот же список, но уже подготовленный к импорту в **Amnezia**
-- `discord-voice-domains-list` - общий список из доменов голосовых каналов Discord для регионов: Россия, Нидерланды, Швеция, Италия, Германия, Испания, Польша, Румыния
-- `discord-voice-ip-list` - список из IP голосовых каналов Discord для вышеназванных регионов
-- `discord-voice-ipset-list` - тот же список, но в формате IPset
-- `amnezia-voice-ip.json` - тот же список, но уже подготовленный к импорту в **Amnezia**
-- `regions` - фолдер со списками IP голосовых каналов разбитых по регионам (_сгенерированный силами `voice-domains-generator`_)
-- `custom-solutions` - фолдер с решениями от **заинтересованных** и **неравнодушных**
-- `voice-domains-generator.sh` - генератор и резолвер доменов голосовых серверов Discord 
-- `voice-domains-generator-fast.sh` [**САМОЕ ОПТИМАЛЬНОЕ РЕШЕНИЕ**] - тоже самое, но в разы шустрее (_зависит от CPU_) 
-- `voice-ip-parser.sh` - IP резолвер по списку `discord-voice-domains-list` с функцией создания и добавления IP в IPset список **unblock**
+- `main-domains-resolver.sh` - IP резолвер по списку `discord-main-domains-list`, вывод сохраняется в фолдер `main_domains`
+- `voice-domains-generator.sh` - генератор и резолвер доменов голосовых серверов Discord (_шустрый, но зависит от CPU_) 
 - `json-voice-ip-converter.sh` - скрипт преобразовывает в JSON списки IP голосовых серверов Discord для последующего ручного импорта в **Amnezia**
+- `ipset-adder.sh` - скрипт генерирует ipset списки из содержимого фолдеров `voice_domains` и `main_domains`, ипортирует их в заданный IPset при этом учитывая уже добавленные в него IP и т.д.
+- `amnezia` - фолдер со списками доменов и IP в формате JSON для настройки раздельного туннелирования в Amnezia
+- `regions` - фолдер со списками IP голосовых каналов разбитых по регионам (_сгенерированный силами `voice-domains-generator`_)
+- `main_domains` - фолдер со списками основных доменов и IP 
+- `voice_domains` - фолдер со списками голосовых доменов и IP 
+- `custom-solutions` - фолдер с решениями от **заинтересованных** и **неравнодушных**
+
+# ДОКА НИЖЕ ВРЕМЕННО НЕАКТУАЛЬНА
 
 ## Использование с IPset
 
@@ -39,12 +38,12 @@ $ cd discord-voice-ips
 ```
 4. **Добавьте адреса из файла `discord-voice-ipset-list` в ваш ipset**:
 ```bash
-$ ipset restore < discord-voice-ipset-list
+$ ipset restore < ./voice_domains/discord-voice-ipset-list
 ```
 5. **Добавьте соответствующее правило в ваш фаерволл, чтобы настроить маршрутизацию**
 ```bash
--A PREROUTING -m set --match-set  dst -j DNAT --to-destination <IP-адрес_интерфейса_туннеля>
--A OUTPUT -m set --match-set  dst -j DNAT --to-destination <IP-адрес_интерфейса_туннеля>
+$ itpables -t nat -A PREROUTING -m set --match-set  dst -j DNAT --to-destination <IP-адрес_интерфейса_туннеля>
+$ itpables -t nat -A OUTPUT -m set --match-set  dst -j DNAT --to-destination <IP-адрес_интерфейса_туннеля>
 ```
 _p.s. Этот вариант наиболее удобен в сценарии с [KVAS](https://github.com/qzeleza/kvas), т.к. при его установке будут добавлены аналогичные цепочки и списки_
 
@@ -157,7 +156,7 @@ $ man ipset
 ## Скрипт `voice-domains-generator-fast`
 
 Этот скрипт предназначен для **быстрой** генерации и резолвинга доменных имен голосовых каналов Discord по заданным регионам. 
-Задействуется `parallel`, что позволяет выполняться в несколько параллельных процессов (_по умолчанию 60_) значительно ускоряя генерацию и резолвинг.
+Задействуется `parallel`, что позволяет выполняться в несколько параллельных процессов (_по умолчанию 252 и это макс. значение_) значительно ускоряя генерацию и резолвинг.
 
 ### Подготовка и использование
 

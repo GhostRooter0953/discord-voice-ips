@@ -1,74 +1,89 @@
-#!/bin/sh
+#!/bin/bash
 
-default_regions="russia bucharest finland frankfurt madrid milan rotterdam stockholm warsaw"
+set -euo pipefail
 
-regions="${1:-$default_regions}"
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m'
 
-total_domains=15000
+DEFAULT_REGIONS=("russia" "bucharest" "finland" "frankfurt" "madrid" "milan" "rotterdam" "stockholm" "warsaw")
+TOTAL_DOMAINS=15000
 
-kill -sighup $(pgrep dnsmasq) 2> /dev/null || echo "Куда же подевался наш dnsmasq?"
+if [[ -n "${1:-}" ]]; then
+    regions=("$1")
+else
+    regions=("${DEFAULT_REGIONS[@]}")
+fi
 
-check_domain() {
-    domain=$1
-    region=$2
-    directory="./regions/$region"
+if pgrep dnsmasq > /dev/null; then
+    echo -e "\n${GREEN}Перезапускаем dnsmasq...${NC}"
+    pkill -SIGHUP dnsmasq
+else
+    echo -e "\n${RED}Куда же подевался наш dnsmasq?${NC}"
+fi
+
+resolve_domain() {
+    local domain="$1"
+    local region="$2"
+    local directory="./regions/$region"
 
     mkdir -p "$directory"
 
-    ip=$(dig A +short "$domain" | grep -Evi "(warning|timed out|no servers|mismatch)")
+    local ip
+    ip=$(dig +short A "$domain" | grep -Ev "(warning|timed out|no servers|mismatch)")
 
-    [ -n "$ip" ] && {
-        echo "$domain: $ip" >> "$directory/$region-voice-resolved"
-        echo "$domain" >> "$directory/$region-voice-domains"
-        echo "$ip" >> "$directory/$region-voice-ip"
-        echo "add unblock $ip" >> "$directory/$region-voice-ipset"
-    }
+    if [[ -n "$ip" ]]; then
+        {
+            echo "$domain: $ip" >> "$directory/$region-voice-resolved"
+            echo "$domain" >> "$directory/$region-voice-domains"
+            echo "$ip" >> "$directory/$region-voice-ip"
+        }
+    fi
 }
 
-all_ip_list="./discord-voice-ip-list"
-all_ipset_list="./discord-voice-ipset-list"
-all_domains_list="./discord-voice-domains-list"
+export -f resolve_domain
 
-> "$all_ip_list"
-> "$all_ipset_list"
-> "$all_domains_list"
+ALL_IP_LIST="./voice_domains/discord-voice-ip-list"
+ALL_DOMAINS_LIST="./voice_domains/discord-voice-domains-list"
 
-for region in $regions; do
-    echo "\nГенерируем и резолвим домены для региона: $region"
+: > "$ALL_IP_LIST"
+: > "$ALL_DOMAINS_LIST"
+
+for region in "${regions[@]}"; do
+    echo -e "\n${CYAN}Генерируем домены региона: ${YELLOW}$region${NC}"
     directory="./regions/$region"
 
-    [ -z "$directory" ] && {
-        echo 'Чуть не сделали rm -rf /*'
+    if [[ -z "$directory" || "$directory" == "/" ]]; then
+        echo -e "${RED}Чуть не потёрли корень, сворачиваемся${NC}"
         exit 1
-    }
-    rm -rf "${directory:?}"/*
+    fi
+    rm -rf "${directory:?}/"*
 
     start_time=$(date +%s)
-    start_date=$(date +'%d.%m.%Y в %H:%M:%S')
+    start_date=$(date '+%d.%m.%Y в %H:%M:%S')
 
-    resolved_count=0
+    mapfile -t domains < <(seq 1 "$TOTAL_DOMAINS" | awk -v region="$region" '{print region $1 ".discord.gg"}')
 
-   for i in $(seq 1 "$total_domains"); do
-       check_domain "${region}${i}.discord.gg" "$region"
-       resolved_count=$((resolved_count + 1))
+    echo -e "${GREEN}Резолвим...${NC}"
+    printf "%s\n" "${domains[@]}" | parallel --bar -j252 resolve_domain {} "$region"
 
-       printf "\rПрогресс: $(( (resolved_count * 100) / total_domains ))%%"
-   done
+    sort -u "$directory/$region-voice-ip" >> "$ALL_IP_LIST" 2>/dev/null || true
+    sort -u "$directory/$region-voice-domains" >> "$ALL_DOMAINS_LIST" 2>/dev/null || true
 
-   sort "$directory/$region-voice-ip" 2> /dev/null >> "$all_ip_list"
-   sort "$directory/$region-voice-ipset" 2> /dev/null >> "$all_ipset_list"
-   sort "$directory/$region-voice-domains" 2> /dev/null >> "$all_domains_list"
+    end_time=$(date +%s)
+    execution_time=$((end_time - start_time))
+    domains_resolved=$(wc -l < "$directory/$region-voice-resolved" 2>/dev/null || echo 0)
 
-   end_time=$(date +%s)
-   execution_time=$((end_time - start_time))
-   domains_resolved=$(wc -l < "$directory"/"$region"-voice-resolved)
-
-   echo ""
-   echo "Успех!"
-   echo "Время запуска: $start_date"
-   echo "Время выполнения: $(date -ud "@$execution_time" +'%H:%M:%S')"
-   echo "Доменов зарезолвили: $domains_resolved"
+    echo -e "\n${GREEN}Успех для региона ${YELLOW}$region${GREEN}!${NC}"
+    echo -e "${BLUE}Время запуска:${NC} ${MAGENTA}$start_date${NC}"
+    echo -e "${BLUE}Время выполнения:${NC} ${MAGENTA}$(date -ud "@$execution_time" +'%H:%M:%S')${NC}"
+    echo -e "${BLUE}Доменов зарезолвили:${NC} ${MAGENTA}$domains_resolved${NC}"
 done
 
-   ip_count=$(wc -l < "$all_ip_list")
-   echo "\nСписок "$all_ip_list" обновлён, зарезолвили $ip_count адреса(ов)\n"
+ip_count=$(wc -l < "$ALL_IP_LIST" 2>/dev/null || echo 0)
+echo -e "\n${GREEN}Список \"${YELLOW}${BOLD}$ALL_IP_LIST${NC}${GREEN}\" обновлён, зарезолвили ${MAGENTA}$ip_count${GREEN} адрес(ов)${NC}\n"
