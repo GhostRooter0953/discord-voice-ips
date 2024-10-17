@@ -25,16 +25,16 @@
 - **amnezia/**
 Содержит JSON-файлы с IP-адресами для Amnezia VPN.
 - **main_domains/**
-  - discord-main-domains-list — список основных доменов Discord для резолвинга.
-  - discord-main-ip-list — результат резолвинга основных доменов.
-  - discord-main-ipset-list — IPSet список основных IP-адресов.
+  - `discord-main-domains-list` — список основных доменов Discord для резолвинга.
+  - `discord-main-ip-list` — результат резолвинга основных доменов.
+  - `discord-main-ipset-list` — IPSet список основных IP-адресов.
 - **regions/**
 Содержит папки по регионам с результатами резолвинга голосовых серверов.
-  - **<region>/**
-    - `\<region\>-voice-domains` — список зарезолвленных доменов.
-    - `\<region\>-voice-ip` — список IP-адресов.
-    - `\<region\>-voice-ipset` — IPSet список для региона.
-    - `\<region\>-voice-resolved` — сопоставление доменов и IP.
+  - **\<region\>/**
+    - `<region>-voice-domains` — список зарезолвленных доменов.
+    - `<region>-voice-ip` — список IP-адресов.
+    - `<region>-voice-ipset` — IPSet список для региона.
+    - `<region>-voice-resolved` — сопоставление доменов и IP.
 - **voice_domains/**
   - `discord-voice-domains-list` — объединённый список доменов голосовых серверов.
   - `discord-voice-ip-list` — объединённый список IP-адресов.
@@ -69,12 +69,14 @@
 - rotterdam
 - stockholm
 - warsaw
+
 _Отредактируйте переменную `DEFAULT_REGIONS` в `voice-domains-generator.sh`, если требуется_
+
 2. Вы также можете указать в качестве аргумента конкретный регион, например тот, который отсутствует по умолчанию:
 ```bash
 ./voice-domains-generator.sh singapore
 ```
-3. Результаты резолвинга для каждого региона сохраняются в соответствующие файлы в папке `regions/\<имя региона\>`.
+3. Результаты резолвинга для каждого региона сохраняются в соответствующие файлы в папке `regions/<имя региона>`.
 
 ### Конвертация в JSON для Amnezia VPN
 
@@ -106,18 +108,19 @@ _Отредактируйте переменную `DEFAULT_REGIONS` в `voice-d
 
 ## Ветка light
 
-Для роутеров с установленным KVAS доступна облегчённая версия репозитория - ветка light. Подробнее в [этом](https://github.com/GhostRooter0953/discord-ips-kvas-adder) репо.
+Для роутеров с установленным **KVAS** доступна облегчённая версия репозитория - ветка light. 
+Подробнее в [этом](https://github.com/GhostRooter0953/discord-ips-kvas-adder) репо.
 
 ## Короткий мануал по работе с **Amnezia**
 
 - Стянуть [репу](https://github.com/GhostRooter0953/discord-voice-ips/tree/master)
 - Включить раздельное туннелирование в **Amnezia**, в селекторе выбрать **"Только адреса из списка должны открываться через VPN"**
-- Импортировать список с [общими доменами](https://github.com/GhostRooter0953/discord-voice-ips/blob/master/amnezia-discord-domains.json)
-- Импортировать (_без замены_) список с [голосовыми каналами](https://github.com/GhostRooter0953/discord-voice-ips/blob/master/amnezia-voice-ip.json) (_также можно взять и конкретный [регион](https://github.com/GhostRooter0953/discord-voice-ips/tree/master/regions)_)
+- Импортировать список с [общими доменами](https://github.com/GhostRooter0953/discord-voice-ips/blob/master/amnezia/amnezia-discord-domains.json)
+- Импортировать (_без замены_) список с [голосовыми каналами](https://github.com/GhostRooter0953/discord-voice-ips/blob/master/amnezia/amnezia-voice-ip.json) (_также можно взять и конкретный [регион](https://github.com/GhostRooter0953/discord-voice-ips/tree/master/amnezia)_)
 - Подключиться к **Amnezia** и проверить работу Discord
 
 ## Схема структуры репозитория
-
+```css
 discord-voice-ips/
 ├── README.md
 ├── amnezia/
@@ -203,9 +206,10 @@ discord-voice-ips/
     ├── discord-voice-domains-list
     ├── discord-voice-ip-list
     └── discord-voice-ipset-list
+```
 
 ## To Do
 
-- Сканер и резолвер сабдоменов, т.к. периодчески возникают подобные [сиутации](https://github.com/GhostRooter0953/discord-voice-ips/issues/1#issuecomment-2408466714)
+- Сканер и резолвер сабдоменов, т.к. периодчески возникают подобные [ситуации](https://github.com/GhostRooter0953/discord-voice-ips/issues/1#issuecomment-2408466714)
 - Механизм автоматической актуализации списков в репозитории
 ---
