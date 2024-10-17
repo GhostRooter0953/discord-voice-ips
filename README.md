@@ -31,7 +31,7 @@
   - `discord-main-ipset-list` — IPSet список основных IP-адресов.
 - **regions/**
 Содержит папки по регионам с результатами резолвинга голосовых серверов.
-  - **<region>/**
+  - **\<region\>/**
     - `\<region\>-voice-domains` — список зарезолвленных доменов.
     - `\<region\>-voice-ip` — список IP-адресов.
     - `\<region\>-voice-ipset` — IPSet список для региона.
