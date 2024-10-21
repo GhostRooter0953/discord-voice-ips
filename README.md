@@ -17,8 +17,9 @@
 - `ipset-adder.sh` - скрипт генерирует ipset списки из содержимого фолдеров `voice_domains` и `main_domains`, ипортирует их в заданный IPset при этом учитывая уже добавленные в него IP
 - `amnezia` - фолдер со списками доменов и IP в формате JSON для настройки раздельного туннелирования в Amnezia
 - `regions` - фолдер со списками IP голосовых каналов разбитых по регионам (_сгенерированный силами `voice-domains-generator`_)
-- `main_domains` - фолдер со списками основных доменов и IP
-- `voice_domains` - фолдер со списками голосовых доменов и IP
+- `main_domains` - фолдер со списками основных доменов и IP 
+- `voice_domains` - фолдер со списками голосовых доменов и IP 
+- `custom-solutions` - фолдер с решениями от **заинтересованных** и **неравнодушных**
 
 ### Папки
 
@@ -141,6 +142,7 @@ discord-voice-ips/
 │   ├── amnezia-stockholm-voice-ip.json
 │   ├── amnezia-voice-ip.json
 │   └── amnezia-warsaw-voice-ip.json
+├── custom-solutions/
 ├── ipset-adder.sh
 ├── json-voice-ip-converter.sh
 ├── main-domains-resolver.sh
