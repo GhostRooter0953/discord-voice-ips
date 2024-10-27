@@ -61,13 +61,14 @@ def generate_warp_conf(ip_addresses, output_file):
 PrivateKey = {private_key}
 S1 = 0
 S2 = 0
-Jc = 120
-Jmin = 23
-Jmax = 911
+Jc = 4
+Jmin = 40
+Jmax = 70
 H1 = 1
 H2 = 2
 H3 = 3
 H4 = 4
+MTU = 1280
 Address = {address}
 DNS = {dns}
 
