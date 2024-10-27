@@ -9,12 +9,16 @@
 
 ### 1. Генерация базовой Warp конфигурации
 Вам необходимо сгенерировать конфигурационный файл **Warp** для вашей системы. Для этого запустите bash-скрипт [`warp_generator.sh`](warp_generator.sh).
+Предоставленный [ImMALWARE](https://github.com/ImMALWARE/bash-warp-generator)
 
-Если на вашем устройстве отсутствуют необходимые инструменты для запуска, воспользуйтесь видеогайдом:  
-[Ссылка на YouTube](https://youtu.be/81VYImVfupw?si=37vd13xqWatQIPaD).
+Если на вашем устройстве отсутствуют необходимые инструменты для запуска, воспользуйтесь гайдом:  
+[Ссылка readme у ImMALWARE](https://github.com/ImMALWARE/bash-warp-generator/blob/main/README.md).
 
 ### 2. Использование
 - Если Python не установлен, используйте готовый исполняемый файл `WarpGeneratorApp.exe`, который скомпилирован из `main.py`.
+```angular2html
+pyinstaller --onefile --windowed  --distpath .  main.py
+```
 - Заполните необходимые поля 
   - `PrivateKey`
   - `Address`
@@ -30,3 +34,5 @@
 На выходе вы получите файл конфигурации **Warp**, настроенный для обхода блокировок, но исключительно для IP-адресов Discord.
 
 **NOTE:** Для использования необходимо установить AmneziaWG. Официальная документация: https://docs.amnezia.org/documentation/amnezia-wg/
+
+**NOTE:** Если ваш провайдер блокирует стандарнтный Endpoint, то попробуйте использовать Endpoint = engage.cloudflareclient.com:2408 (актуально на 28.10.24)

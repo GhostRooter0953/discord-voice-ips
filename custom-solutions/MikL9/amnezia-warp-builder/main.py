@@ -88,9 +88,10 @@ def main():
         raise ValueError("root_path is not set")
 
     print(f"Root path: {root_path}")
-    hosts_file = os.path.join(root_path, 'discord-domains-list')
-    region_json_file = os.path.join(root_path, 'amnezia-voice-ip.json')
-    domains_json_file = os.path.join(root_path, "amnezia-discord-domains.json")
+    hosts_file = os.path.join(root_path, 'main_domains/discord-main-domains-list')
+    amnezia_path = os.path.join(root_path, 'amnezia')
+    region_json_file = os.path.join(amnezia_path,  'amnezia-voice-ip.json')
+    domains_json_file = os.path.join(amnezia_path, "amnezia-discord-domains.json")
 
     # Шаг 1. Получаем IP-адреса с хостов
     print("Получаем IP-адреса доменов...")

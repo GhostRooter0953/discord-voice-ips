@@ -16,9 +16,9 @@ IMPORTANT: Do NOT post this list to the issue-tracker. Use it as a basis for
 
 missing module named grp - imported by subprocess (delayed, conditional, optional), shutil (delayed, optional), tarfile (optional), pathlib (delayed, optional)
 missing module named pwd - imported by posixpath (delayed, conditional), subprocess (delayed, conditional, optional), shutil (delayed, optional), tarfile (optional), pathlib (delayed, optional), netrc (delayed, conditional), getpass (delayed), http.server (delayed, optional), webbrowser (delayed)
-missing module named 'org.python' - imported by copy (optional), xml.sax (delayed, conditional)
+missing module named org - imported by copy (optional)
 missing module named typing_extensions - imported by traitlets.traitlets (conditional), IPython.core.oinspect (conditional), prompt_toolkit.eventloop.inputhook (conditional), prompt_toolkit.formatted_text.base (conditional), prompt_toolkit.layout.utils (conditional), prompt_toolkit.layout.dimension (conditional), prompt_toolkit.layout.containers (conditional), IPython.core.guarded_eval (conditional), IPython.core.completer (conditional), attr._compat (conditional, optional), urllib3.util.retry (conditional), urllib3._collections (conditional), urllib3.util.ssltransport (conditional), urllib3.connectionpool (conditional), urllib3.poolmanager (conditional), urllib3.contrib.emscripten.fetch (conditional), charset_normalizer.legacy (conditional), jinja2.bccache (conditional), markupsafe (conditional), jinja2.utils (conditional), jinja2.runtime (conditional), jinja2.lexer (conditional), jinja2.nodes (conditional), jinja2.visitor (conditional), jinja2.compiler (conditional), jinja2.filters (conditional), jinja2.defaults (conditional), jinja2.parser (conditional), jinja2.environment (conditional), jinja2.ext (conditional)
-missing module named org - imported by pickle (optional)
+missing module named 'org.python' - imported by pickle (optional), xml.sax (delayed, conditional)
 missing module named _frozen_importlib_external - imported by importlib._bootstrap (delayed), importlib (optional), importlib.abc (optional), zipimport (top-level)
 excluded module named _frozen_importlib - imported by importlib (optional), importlib.abc (optional), zipimport (top-level)
 missing module named pep517 - imported by importlib.metadata (delayed)
