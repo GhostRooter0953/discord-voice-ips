@@ -1,5 +1,4 @@
-('C:\\Users\\asq1x\\Downloads\\discord-voice-ips-master '
- '(2)\\discord-voice-ips-master\\custom-solutions\\MikL9\\amnezia-warp-builder\\build\\main\\PYZ-00.pyz',
+('C:\\Users\\asq1x\\PycharmProjects\\discord-voice-ips-amneziaWG\\custom-solutions\\MikL9\\amnezia-warp-builder\\build\\main\\PYZ-00.pyz',
  [('IPython',
    'C:\\Users\\asq1x\\PycharmProjects\\discord-voice-ips-amneziaWG\\venv\\lib\\site-packages\\IPython\\__init__.py',
    'PYMODULE'),
@@ -3602,8 +3601,7 @@
    'C:\\Users\\asq1x\\PycharmProjects\\discord-voice-ips-amneziaWG\\venv\\lib\\site-packages\\urllib3\\util\\wait.py',
    'PYMODULE'),
   ('utils',
-   'C:\\Users\\asq1x\\Downloads\\discord-voice-ips-master '
-   '(2)\\discord-voice-ips-master\\custom-solutions\\MikL9\\amnezia-warp-builder\\utils.py',
+   'C:\\Users\\asq1x\\PycharmProjects\\discord-voice-ips-amneziaWG\\custom-solutions\\MikL9\\amnezia-warp-builder\\utils.py',
    'PYMODULE'),
   ('uu',
    'C:\\Users\\asq1x\\AppData\\Local\\Programs\\Python\\Python310\\lib\\uu.py',
@@ -3612,8 +3610,7 @@
    'C:\\Users\\asq1x\\AppData\\Local\\Programs\\Python\\Python310\\lib\\uuid.py',
    'PYMODULE'),
   ('wapr_generation',
-   'C:\\Users\\asq1x\\Downloads\\discord-voice-ips-master '
-   '(2)\\discord-voice-ips-master\\custom-solutions\\MikL9\\amnezia-warp-builder\\wapr_generation.py',
+   'C:\\Users\\asq1x\\PycharmProjects\\discord-voice-ips-amneziaWG\\custom-solutions\\MikL9\\amnezia-warp-builder\\wapr_generation.py',
    'PYMODULE'),
   ('wave',
    'C:\\Users\\asq1x\\AppData\\Local\\Programs\\Python\\Python310\\lib\\wave.py',
