@@ -91,6 +91,8 @@
 ,
   {"hostname":"stockholm7797.discord.gg","ip":"66.22.237.19"}
 ,
+  {"hostname":"stockholm7918.discord.gg","ip":"66.22.237.37"}
+,
   {"hostname":"stockholm7997.discord.gg","ip":"66.22.237.7"}
 ,
   {"hostname":"stockholm8036.discord.gg","ip":"66.22.237.21"}
@@ -132,6 +134,4 @@
   {"hostname":"stockholm9724.discord.gg","ip":"66.22.237.43"}
 ,
   {"hostname":"stockholm9889.discord.gg","ip":"66.22.237.140"}
-,
-  {"hostname":"stockholm7918.discord.gg","ip":"66.22.237.37"}
 ]
