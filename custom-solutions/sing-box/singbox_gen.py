@@ -5,7 +5,7 @@ tempate = {"version": 2, "rules": [{"domain_suffix": [],"ip_cidr": []}]}
 domains = []
 
 # Удаляем сабдомены из списков
-domains_list = [line.rstrip('\n\r') for line in open('main_domains/discord-main-domains-list', 'r') if line]
+domains_list = [line.rstrip('\n\r') for line in open('../../main_domains/discord-main-domains-list', 'r') if line]
 for domain in domains_list:
     skip = False
     for domain_renew in domains_list:
@@ -16,10 +16,8 @@ for domain in domains_list:
     domains.append(domain)
 
 ips = []
-
-ip_main_list = [line.rstrip('\n\r') for line in open('main_domains/discord-main-ip-list', 'r') if line]
-ip_voice_list = [line.rstrip('\n\r') for line in open('voice_domains/discord-voice-ip-list', 'r') if line]
-
+ip_main_list = [line.rstrip('\n\r') for line in open('../../main_domains/discord-main-ip-list', 'r') if line]
+ip_voice_list = [line.rstrip('\n\r') for line in open('../../voice_domains/discord-voice-ip-list', 'r') if line]
 for ip in ip_main_list + ip_voice_list:
     ipcdr = f'{ip}/32'
     if ipcdr in ips: continue
@@ -30,6 +28,6 @@ tempate['rules'][0]['ip_cidr'] = ips
 
 out = json.dumps(tempate, indent=2)
 
-open('sing-box/discord-rules.json','w').write(out)
+open('rules/discord-rules.json','w').write(out)
 
-subprocess.run(f"sing-box rule-set compile sing-box/discord-rules.json -o sing-box/discord-rules.srs ", shell=True)
+subprocess.run(f"sing-box rule-set compile rules/discord-rules.json -o rules/discord-rules.srs", shell=True)
