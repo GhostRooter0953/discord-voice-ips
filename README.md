@@ -11,9 +11,9 @@
 
 ## Структура Репозитория
 
-- `main-domains-resolver.sh` - резолвит основные домены Discord в IP-адреса. Читает список доменов из main_domains/discord-main-domains-list, сохраняет IP-адреса в main_domains/discord-main-ip-list и генерирует JSON-файл amnezia/amnezia-discord-domains.json для использования с Amnezia VPN
+- `main-domains-resolver.sh` - резолвит основные домены Discord в IP-адреса. Читает список доменов из main_domains/discord-main-domains-list, сохраняет IP-адреса в main_domains/discord-main-ip-list и генерирует JSON-файл amnezia/amnezia-discord-domains.json для использования с Amnezia
 - `voice-domains-generator.sh` - генерирует и резолвит домены голосовых серверов Discord для указанных регионов. Результаты сохраняются в соответствующих папках внутри regions/ и объединяются в общие списки в voice_domains/. (_шустрый, но зависит от CPU_) 
-- `json-voice-ip-converter.sh` - конвертирует результаты резолвинга голосовых серверов из файлов в regions/ в JSON-формат для Amnezia VPN. Генерирует JSON-файлы для каждого региона в amnezia/ и общий файл amnezia/amnezia-voice-ip.json
+- `json-voice-ip-converter.sh` - конвертирует результаты резолвинга голосовых серверов из файлов в regions/ в JSON-формат для Amnezia. Генерирует JSON-файлы для каждого региона в amnezia/ и общий файл amnezia/amnezia-voice-ip.json
 - `ipset-adder.sh` - скрипт генерирует ipset списки из содержимого фолдеров `voice_domains` и `main_domains`, ипортирует их в заданный IPset при этом учитывая уже добавленные в него IP
 - `amnezia` - фолдер со списками доменов и IP в формате JSON для настройки раздельного туннелирования в Amnezia
 - `regions` - фолдер со списками IP голосовых каналов разбитых по регионам (_сгенерированный силами `voice-domains-generator`_)
@@ -24,7 +24,7 @@
 ### Папки
 
 - **amnezia/**
-Содержит JSON-файлы с IP-адресами для Amnezia VPN.
+Содержит JSON-файлы с IP-адресами для Amnezia.
 - **main_domains/**
   - `discord-main-domains-list` — список основных доменов Discord для резолвинга.
   - `discord-main-ip-list` — результат резолвинга основных доменов.
@@ -79,7 +79,7 @@ _Отредактируйте переменную `DEFAULT_REGIONS` в `voice-d
 ```
 3. Результаты резолвинга для каждого региона сохраняются в соответствующие файлы в папке `regions/<имя региона>`.
 
-### Конвертация в JSON для Amnezia VPN
+### Конвертация в JSON для Amnezia
 
 Для конвертации списков основных и голосовых серверов в формат JSON выполните:
 
@@ -119,7 +119,7 @@ _Отредактируйте переменную `DEFAULT_REGIONS` в `voice-d
 ## Короткий мануал по работе с **Amnezia**
 
 - Стянуть [репу](https://github.com/GhostRooter0953/discord-voice-ips/tree/master)
-- Включить раздельное туннелирование в **Amnezia**, в селекторе выбрать **"Только адреса из списка должны открываться через VPN"**
+- Включить раздельное туннелирование в **Amnezia**, в селекторе выбрать **"Только адреса из списка должны открываться через"**
 - Импортировать список с [общими доменами](https://github.com/GhostRooter0953/discord-voice-ips/blob/master/amnezia/amnezia-discord-domains.json)
 - Импортировать (_без замены_) список с [голосовыми каналами](https://github.com/GhostRooter0953/discord-voice-ips/blob/master/amnezia/amnezia-voice-ip.json) (_также можно взять и конкретный [регион](https://github.com/GhostRooter0953/discord-voice-ips/tree/master/amnezia)_)
 - Подключиться к **Amnezia** и проверить работу Discord
