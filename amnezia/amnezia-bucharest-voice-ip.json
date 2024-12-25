@@ -13,6 +13,8 @@
 ,
   {"hostname":"bucharest1590.discord.gg","ip":"66.22.244.43"}
 ,
+  {"hostname":"bucharest1654.discord.gg","ip":"66.22.244.24"}
+,
   {"hostname":"bucharest1729.discord.gg","ip":"66.22.244.138"}
 ,
   {"hostname":"bucharest1832.discord.gg","ip":"66.22.244.145"}
@@ -29,9 +31,9 @@
 ,
   {"hostname":"bucharest2232.discord.gg","ip":"66.22.244.25"}
 ,
-  {"hostname":"bucharest2635.discord.gg","ip":"66.22.244.22"}
-,
   {"hostname":"bucharest2637.discord.gg","ip":"66.22.244.144"}
+,
+  {"hostname":"bucharest2635.discord.gg","ip":"66.22.244.22"}
 ,
   {"hostname":"bucharest2697.discord.gg","ip":"66.22.244.154"}
 ,
@@ -40,8 +42,6 @@
   {"hostname":"bucharest2980.discord.gg","ip":"66.22.244.11"}
 ,
   {"hostname":"bucharest3157.discord.gg","ip":"66.22.244.12"}
-,
-  {"hostname":"bucharest3476.discord.gg","ip":"66.22.244.32"}
 ,
   {"hostname":"bucharest3592.discord.gg","ip":"66.22.244.134"}
 ,
