@@ -38,14 +38,14 @@ if [[ "$mode" == "auto" ]]; then
     generate_ipset_list "$main_ip_list_file" "$main_ipset_list_file" "$ipset_name"
     generate_ipset_list "$voice_ip_list_file" "$voice_ipset_list_file" "$ipset_name"
 
-    if ! ipset list "$ipset_name" > /dev/null 2>&1; then
-        ipset create "$ipset_name" hash:ip
+    if ! sudo ipset list "$ipset_name" > /dev/null 2>&1; then
+        sudo ipset create "$ipset_name" hash:ip
         echo -e "${GREEN}IPset лист ${YELLOW}$ipset_name${GREEN} создан${NC}"
     else
         echo -e "${GREEN}Работаем дальше...${NC}"
     fi
 
-    existing_ips=$(ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
+    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
 
     declare -A existing_ips_array
     while IFS= read -r ip; do
@@ -74,7 +74,7 @@ if [[ "$mode" == "auto" ]]; then
     done
 
     if [[ -s "$tmp_ipset_restore_file" ]]; then
-        ipset restore < "$tmp_ipset_restore_file"
+        sudo ipset restore < "$tmp_ipset_restore_file"
         count=$(wc -l < "$tmp_ipset_restore_file")
         echo -e "${GREEN}Загружено ${YELLOW}$count${GREEN} IP адреса(ов) в IPset лист ${YELLOW}$ipset_name${NC}"
     else
@@ -105,14 +105,14 @@ elif [[ "$mode" == "list" ]]; then
     generate_ipset_list "$main_ip_list_file" "$main_ipset_list_file" "$ipset_name"
     generate_ipset_list "$voice_ip_list_file" "$voice_ipset_list_file" "$ipset_name"
 
-    if ! ipset list "$ipset_name" > /dev/null 2>&1; then
-        ipset create "$ipset_name" hash:ip
+    if ! sudo ipset list "$ipset_name" > /dev/null 2>&1; then
+        sudo ipset create "$ipset_name" hash:ip
         echo -e "${GREEN}IPset лист ${YELLOW}$ipset_name${GREEN} создан${NC}"
     else
         echo -e "${GREEN}Работаем дальше...${NC}"
     fi
 
-    existing_ips=$(ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
+    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
 
     declare -A existing_ips_array
     while IFS= read -r ip; do
@@ -141,7 +141,7 @@ elif [[ "$mode" == "list" ]]; then
     done
 
     if [[ -s "$tmp_ipset_restore_file" ]]; then
-        ipset restore < "$tmp_ipset_restore_file"
+        sudo ipset restore < "$tmp_ipset_restore_file"
         count=$(wc -l < "$tmp_ipset_restore_file")
         echo -e "${GREEN}Загружено ${YELLOW}$count${GREEN} IP адреса(ов) в IPset лист ${YELLOW}$ipset_name${NC}"
     else
@@ -177,7 +177,7 @@ elif [[ "$mode" == "noipset" ]]; then
     done
     exit 0
 else
-    existing_ipsets=$(ipset list -n | grep -vE '(^_NDM|^_UPNP)' || true)
+    existing_ipsets=$(sudo ipset list -n | grep -vE '(^_NDM|^_UPNP)' || true)
 
     if [[ -n "$existing_ipsets" ]]; then
         mapfile -t ipset_list <<< "$existing_ipsets"
@@ -234,14 +234,14 @@ else
         fi
     done
 
-    if ! ipset list "$ipset_name" > /dev/null 2>&1; then
-        ipset create "$ipset_name" hash:ip
+    if ! sudo ipset list "$ipset_name" > /dev/null 2>&1; then
+        sudo ipset create "$ipset_name" hash:ip
         echo -e "${GREEN}IPset лист ${YELLOW}$ipset_name${GREEN} создан${NC}"
     else
         echo -e "${GREEN}Работаем дальше...${NC}"
     fi
 
-    existing_ips=$(ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
+    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
 
     declare -A existing_ips_array
     while IFS= read -r ip; do
@@ -357,7 +357,7 @@ else
     done
 
     if [[ -s "$tmp_ipset_restore_file" ]]; then
-        ipset restore < "$tmp_ipset_restore_file"
+        sudo ipset restore < "$tmp_ipset_restore_file"
         count=$(wc -l < "$tmp_ipset_restore_file")
         echo -e "${GREEN}Загружено ${YELLOW}$count${GREEN} IP адреса(ов) в IPset лист ${YELLOW}$ipset_name${NC}"
     else
