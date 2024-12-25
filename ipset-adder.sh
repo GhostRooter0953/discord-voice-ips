@@ -45,7 +45,7 @@ if [[ "$mode" == "auto" ]]; then
         echo -e "${GREEN}Работаем дальше...${NC}"
     fi
 
-    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
+    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{ print $1 }' | sort)
 
     declare -A existing_ips_array
     while IFS= read -r ip; do
@@ -112,7 +112,7 @@ elif [[ "$mode" == "list" ]]; then
         echo -e "${GREEN}Работаем дальше...${NC}"
     fi
 
-    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
+    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{ print $1 }' | sort)
 
     declare -A existing_ips_array
     while IFS= read -r ip; do
@@ -241,7 +241,7 @@ else
         echo -e "${GREEN}Работаем дальше...${NC}"
     fi
 
-    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{$1=$1};1' | sort)
+    existing_ips=$(sudo ipset list "$ipset_name" | sed -n '/^Members:/,$p' | tail -n +2 | awk '{ print $1 }' | sort)
 
     declare -A existing_ips_array
     while IFS= read -r ip; do
