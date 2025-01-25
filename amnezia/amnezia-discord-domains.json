@@ -3,11 +3,11 @@
 ,
   {"hostname":"canary.discord.com","ip":"162.159.128.233"}
 ,
-  {"hostname":"dis.gd","ip":"104.18.37.76"}
+  {"hostname":"dis.gd","ip":"188.114.98.232"}
 ,
   {"hostname":"ptb.discord.com","ip":"162.159.128.233"}
 ,
-  {"hostname":"discord-attachments-uploads-prd.storage.googleapis.com","ip":"142.250.186.219"}
+  {"hostname":"discord-attachments-uploads-prd.storage.googleapis.com","ip":"108.177.14.207"}
 ,
   {"hostname":"discord-activities.com","ip":""}
 ,
@@ -17,23 +17,23 @@
 ,
   {"hostname":"discord.design","ip":"188.114.96.1"}
 ,
-  {"hostname":"discord.dev","ip":"188.114.96.11"}
+  {"hostname":"discord.dev","ip":"188.114.96.1"}
 ,
   {"hostname":"discord.gg","ip":"162.159.130.234"}
 ,
   {"hostname":"discord.gift","ip":"104.21.25.51"}
 ,
-  {"hostname":"discord.gifts","ip":"188.114.96.11"}
+  {"hostname":"discord.gifts","ip":"188.114.96.1"}
 ,
   {"hostname":"discord.media","ip":"162.159.128.235"}
 ,
-  {"hostname":"discord.new","ip":"188.114.96.11"}
+  {"hostname":"discord.new","ip":"188.114.96.1"}
 ,
   {"hostname":"discord.store","ip":"23.227.38.74"}
 ,
   {"hostname":"discord.tools","ip":""}
 ,
-  {"hostname":"discordactivities.com","ip":"188.114.98.233"}
+  {"hostname":"discordactivities.com","ip":"188.114.98.232"}
 ,
   {"hostname":"discordapp.com","ip":"162.159.129.233"}
 ,
@@ -53,9 +53,9 @@
 ,
   {"hostname":"discordpartygames.com","ip":"204.11.56.48"}
 ,
-  {"hostname":"discordsays.com","ip":"188.114.98.233"}
+  {"hostname":"discordsays.com","ip":"188.114.98.232"}
 ,
-  {"hostname":"discordsez.com","ip":"188.114.98.233"}
+  {"hostname":"discordsez.com","ip":"188.114.98.232"}
 ,
   {"hostname":"discordstatus.com","ip":"18.165.140.101"}
 ]
