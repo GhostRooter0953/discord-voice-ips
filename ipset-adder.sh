@@ -15,7 +15,7 @@ generate_ipset_list() {
         echo -e " - ${YELLOW}$ip_file${NC}"
         : > "$ipset_file"
         while IFS= read -r ip; do
-            echo "add $ipset_name $ip timeout 0 -exist" >> "$ipset_file"
+            echo "add $ipset_name $ip -exist" >> "$ipset_file"
         done < "$ip_file"
     else
         echo -e "${RED}IP файл $ip_file не найден${NC}"
@@ -67,7 +67,7 @@ if [[ "$mode" == "auto" ]]; then
                 continue
             fi
             if [[ -z "${existing_ips_array["$ip"]-}" ]]; then
-                echo "add $ipset_name $ip timeout 0 -exist" >> "$tmp_ipset_restore_file"
+                echo "add $ipset_name $ip -exist" >> "$tmp_ipset_restore_file"
                 existing_ips_array["$ip"]=1
             fi
         done < "$ipset_file"
@@ -134,7 +134,7 @@ elif [[ "$mode" == "list" ]]; then
                 continue
             fi
             if [[ -z "${existing_ips_array["$ip"]-}" ]]; then
-                echo "add $ipset_name $ip timeout 0 -exist" >> "$tmp_ipset_restore_file"
+                echo "add $ipset_name $ip -exist" >> "$tmp_ipset_restore_file"
                 existing_ips_array["$ip"]=1
             fi
         done < "$ipset_file"
@@ -350,7 +350,7 @@ else
                 continue
             fi
             if [[ -z "${existing_ips_array["$ip"]-}" ]]; then
-                echo "add $ipset_name $ip timeout 0 -exist" >> "$tmp_ipset_restore_file"
+                echo "add $ipset_name $ip -exist" >> "$tmp_ipset_restore_file"
                 existing_ips_array["$ip"]=1
             fi
         done < "$ipset_file"
