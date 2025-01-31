@@ -41,7 +41,7 @@
 ```bash
 ./main-domains-resolver.sh
 ```
-✅ **Результаты:**  
+✅ Результаты сохраняются в:  
 - Основные IP-адреса → `./main_domains/discord-main-ip-list`  
 - JSON-список для Amnezia → `./amnezia/amnezia-discord-domains.json`  
 
@@ -70,7 +70,7 @@ _Отредактируйте переменную `DEFAULT_REGIONS` в `voice-d
 ```bash
 ./voice-domains-generator.sh singapore
 ```
-✅ Результаты сохраняются в `regions/<имя региона>`  
+✅ Результаты сохраняются в фолдер `regions/<имя региона>`  
 
 ---
 
@@ -78,7 +78,7 @@ _Отредактируйте переменную `DEFAULT_REGIONS` в `voice-d
 ```bash
 ./json-voice-ip-converter.sh
 ```
-✅ **Результаты:** JSON-файлы в `amnezia/`  
+✅ Результаты сохраняются в фолдер `amnezia/`  
 
 ---
 
