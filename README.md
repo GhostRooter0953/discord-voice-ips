@@ -14,7 +14,7 @@
 - `main-domains-resolver.sh` - резолвит основные домены Discord в IP-адреса. Читает список доменов из main_domains/discord-main-domains-list, сохраняет IP-адреса в main_domains/discord-main-ip-list и генерирует JSON-файл amnezia/amnezia-discord-domains.json для использования с Amnezia
 - `voice-domains-generator.sh` - генерирует и резолвит домены голосовых серверов Discord для указанных регионов. Результаты сохраняются в соответствующих папках внутри regions/ и объединяются в общие списки в voice_domains/. (_шустрый, но зависит от CPU_) 
 - `json-voice-ip-converter.sh` - конвертирует результаты резолвинга голосовых серверов из файлов в regions/ в JSON-формат для Amnezia. Генерирует JSON-файлы для каждого региона в amnezia/ и общий файл amnezia/amnezia-voice-ip.json
-- `ipset-adder.sh` - скрипт генерирует ipset списки из содержимого фолдеров `voice_domains` и `main_domains`, ипортирует их в заданный IPset при этом учитывая уже добавленные в него IP
+- `ipset-adder.sh` - скрипт генерирует IPset списки из содержимого фолдеров `voice_domains` и `main_domains`, ипортирует их в заданный IPset при этом учитывая уже добавленные в него IP
 - `amnezia` - фолдер со списками доменов и IP в формате JSON для настройки раздельного туннелирования в Amnezia
 - `regions` - фолдер со списками IP голосовых каналов разбитых по регионам (_сгенерированный силами `voice-domains-generator`_)
 - `main_domains` - фолдер со списками основных доменов и IP 
@@ -111,10 +111,12 @@ _Отредактируйте переменную `DEFAULT_REGIONS` в `voice-d
 - jq для работы с JSON
 - parallel для параллельной обработки запросов резолвинга
 
-## Ветка light
+## Ветки light и light-no-timeout
 
-Для роутеров с установленным **KVAS** доступна облегчённая версия репозитория - ветка light. 
-Подробнее в [этом](https://github.com/GhostRooter0953/discord-ips-kvas-adder) репо.
+Для роутеров с установленным **KVAS** доступна облегчённая версия репозитория - ветка [light](https://github.com/GhostRooter0953/discord-voice-ips/tree/light) и [light-no-timeout](https://github.com/GhostRooter0953/discord-voice-ips/tree/light-no-timeout). 
+Ветки отличаются друг от друга тем, что в `light-no-timeout` при добавлении в IPset список **НЕ** добавляется атрибут таймаута (_как и в ветке `master`_). Таким образом ветка ориентирована на [релизную версию](https://github.com/qzeleza/kvas/releases) КВАС'а. 
+Ветка `light` же напротив, ориентирована на АКТУАЛЬНУЮ версию КВАС'а, в бете которой уже используются таймауты и отличается имя IPset списка -- `KVAS_LIST` (_вместо `unblock`_).
+Подробнее о том как пользоваться иззложено в [этом репо](https://github.com/GhostRooter0953/discord-ips-kvas-adder).
 
 ## Короткий мануал по работе с **Amnezia**
 
@@ -215,6 +217,7 @@ discord-voice-ips/
 
 ## To Do
 
+- Доработка режимов под бета-версии КВАС'а (_ветка light_)
 - Сканер и резолвер сабдоменов, т.к. периодчески возникают подобные [ситуации](https://github.com/GhostRooter0953/discord-voice-ips/issues/1#issuecomment-2408466714)
-- Механизм автоматической актуализации списков в репозитории
+- Механизм автоматической актуализации IP списков и доменов в репозитории
 ---
