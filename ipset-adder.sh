@@ -25,7 +25,7 @@ generate_ipset_list() {
         : > "$ipset_file"
         while IFS= read -r ip; do
             [[ -z "$ip" ]] && continue
-            echo "add $ipset_name $ip -exist" >> "$ipset_file"
+            echo "add $ipset_name $ip timeout 0 -exist" >> "$ipset_file"
         done < "$ip_file"
     else
         log_warn "Генерация списка из ${YELLOW}$ip_file${NC} ${RED}невозможна${NC}, файл не найден – ${GREEN}пропускаем${NC}"
@@ -54,7 +54,7 @@ update_ipset_from_files() {
                 ip="${ip// }"
                 [[ -z "$ip" ]] && continue
                 if [[ -z "${existing_ips_array["$ip"]-}" ]]; then
-                    echo "add $ipset_name $ip -exist" >> "$tmp_ipset_restore_file"
+                    echo "add $ipset_name $ip timeout 0 -exist" >> "$tmp_ipset_restore_file"
                     existing_ips_array["$ip"]=1
                 fi
             done < "$ipset_file"
