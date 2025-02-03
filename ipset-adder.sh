@@ -4,37 +4,31 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
 NC='\033[0m'
 
-log_info() {
-    echo -e "${BLUE}[INFO]${NC} $*"
-}
-
-log_success() {
-    echo -e "${GREEN}[OK]${NC} $*"
-}
-
-log_warn() {
-    echo -e "${YELLOW}[WARN]${NC} $*"
-}
-
-log_error() {
-    echo -e "${RED}[ERROR]${NC} $*"
-}
+line_skip()   { echo -e ". . ."; }
+line_select() { echo -e "${BLUE}[SELECT]${NC} $*"; }
+log_info()    { echo -e "${CYAN}[INFO]${NC} $*"; }
+log_success() { echo -e "${GREEN}[OK]${NC} $*"; }
+log_warn()    { echo -e "${YELLOW}[WARN]${NC} $*"; }
+log_error()   { echo -e "${RED}[ERROR]${NC} $*"; }
 
 generate_ipset_list() {
     local ip_file="$1"
     local ipset_file="$2"
     local ipset_name="$3"
     if [[ -f "$ip_file" ]]; then
-        log_info "Генерация IPset списка из: ${YELLOW}$ip_file${NC}"
+        log_success "Сгенерирован список из ${YELLOW}$ip_file${NC}"
         : > "$ipset_file"
         while IFS= read -r ip; do
             [[ -z "$ip" ]] && continue
             echo "add $ipset_name $ip -exist" >> "$ipset_file"
         done < "$ip_file"
     else
-        log_error "Список $ip_file не найден"
+        log_warn "Генерация списка из ${YELLOW}$ip_file${NC} ${RED}невозможна${NC}, файл не найден – ${GREEN}пропускаем${NC}"
     fi
 }
 
@@ -65,7 +59,7 @@ update_ipset_from_files() {
                 fi
             done < "$ipset_file"
         else
-            log_warn "Список $ipset_file не найден – пропускаем"
+            log_warn "Генерация списка из ${YELLOW}$ip_list_file${NC} ${RED}невозможна${NC}, файл не найден – пропускаем"
         fi
     done
 
@@ -73,9 +67,9 @@ update_ipset_from_files() {
         ipset restore < "$tmp_ipset_restore_file"
         local count
         count=$(wc -l < "$tmp_ipset_restore_file")
-        log_success "Загружено ${YELLOW}$count${NC} IP адреса(ов) в IPset лист ${YELLOW}$ipset_name${NC}"
+        log_success "Загружено ${GREEN}$count${NC} IP адрес(ов) в IPset лист: ${YELLOW}$ipset_name${NC}"
     else
-        log_warn "Нет новых IP адресов для добавления в IPset"
+        log_warn "Нет новых IP адресов для добавления в IPset лист: ${YELLOW}$ipset_name${NC}"
     fi
 
     rm -f "$tmp_ipset_restore_file"
@@ -100,9 +94,9 @@ ensure_ipset_exists() {
     local ipset_name="$1"
     if ! ipset list "$ipset_name" &>/dev/null; then
         ipset create "$ipset_name" hash:ip
-        log_success "IPset лист ${YELLOW}$ipset_name${NC} создан"
+        log_success "Создан IPset лист: ${YELLOW}$ipset_name${NC}"
     else
-        log_info "Используем IPset лист: ${YELLOW}$ipset_name${NC}"
+        log_info "Используем существующий IPset лист: ${YELLOW}$ipset_name${NC}"
     fi
 }
 
@@ -113,13 +107,15 @@ voice_ipset_list_file="./voice_domains/discord-voice-ipset-list"
 
 if [[ "$#" -gt 0 ]]; then
     if [[ "$1" == "noipset" ]]; then
-        log_info "Запущен режим ${YELLOW}noipset${NC}"
+        log_info "Запущен режим ${BLUE}noipset${NC}"
         ipset_name="unblock"
+        log_info "Используем IPset лист: ${YELLOW}$ipset_name${NC}"
         prepare_ipset_files "$ipset_name"
         exit 0
     else
         ipset_name="$1"
-        log_info "Используем IPset лист: ${YELLOW}$ipset_name${NC}"
+        log_info "Запущен режим ${BLUE}list${NC}"
+        # log_info "Используем IPset лист: ${YELLOW}$ipset_name${NC}"
         prepare_ipset_files "$ipset_name"
         ensure_ipset_exists "$ipset_name"
         selected_ipset_files=("$main_ipset_list_file" "$voice_ipset_list_file")
@@ -131,14 +127,14 @@ else
     if [[ -n "$existing_ipsets" ]]; then
         mapfile -t ipset_list <<< "$existing_ipsets"
         log_info "Подготовка к генерации..."
-        echo -e "${GREEN}Существующие IPset листы:${NC}"
+        log_info "Существующие IPset листы:"
         for i in "${!ipset_list[@]}"; do
-            echo -e "${YELLOW}$((i+1)). ${ipset_list[$i]}${NC}"
+            line_select "$((i+1)). ${YELLOW}${ipset_list[$i]}${NC}"
         done
-        echo -e "${YELLOW}0. Создать новый IPset лист${NC}"
-        
+        line_select "0. Создать новый IPset лист"
+
         while true; do
-            read -rp "Выбери в какой IPset лист будет выполнен импорт: " ipset_option
+            read -rp "Выбери номер IPset листа в который будет выполнен импорт: " ipset_option
             if [[ "$ipset_option" =~ ^[0-9]+$ ]]; then
                 if [[ "$ipset_option" -eq 0 ]]; then
                     read -rp "Введите имя для IPset листа: " user_ipset_name
@@ -156,22 +152,21 @@ else
         done
     else
         log_info "Подготовка к генерации..."
-        log_error "IPset листы отсутствуют!"
+        log_warn "IPset листы отсутствуют!"
         read -rp "Введите имя для нового IPset листа: " user_ipset_name
         ipset_name=${user_ipset_name:-unblock}
     fi
 
-    log_info "Используем IPset лист: ${YELLOW}$ipset_name${NC}"
     prepare_ipset_files "$ipset_name"
     ensure_ipset_exists "$ipset_name"
-    
-    echo -e "${GREEN}Выбери списки для загрузки в IPset:${NC}"
-    echo -e "${YELLOW}1. Список с основными серверами${NC}"
-    echo -e "${YELLOW}2. Список с основными и всеми голосовыми серверами${NC}"
-    echo -e "${YELLOW}3. Список с основными и конкретными голосовыми серверами${NC}"
-    
+
+    log_info "Какие списки импортируем в IPset:"
+    line_select "1. Список с основными серверами"
+    line_select "2. Список с основными и всеми голосовыми серверами${NC}"
+    line_select "3. Список с основными и конкретными голосовыми серверами${NC}"
+
     while true; do
-        read -rp "Что выбираем: " list_option
+        read -rp "Выбери вариант: " list_option
         if [[ "$list_option" =~ ^[1-3]$ ]]; then
             break
         else
@@ -199,9 +194,9 @@ else
                 for i in "${!regions[@]}"; do
                     region="${regions[$i]}"
                     if [[ " ${selected_regions[*]} " =~ " $region " ]]; then
-                        echo -e "${YELLOW}$((i+1)). $region ${GREEN}- Уже выбран${NC}"
+                        echo -e "$((i+1)). ${MAGENTA}$region ${GREEN}- Уже выбран${NC}"
                     else
-                        echo -e "${YELLOW}$((i+1)). $region${NC}"
+                        echo -e "$((i+1)). ${MAGENTA}$region${NC}"
                     fi
                 done
                 read -rp "Выбери регион: " region_option
@@ -212,7 +207,7 @@ else
                     if [[ ! " ${selected_regions[*]} " =~ " $region " ]]; then
                         selected_regions+=("$region")
                     else
-                        log_info "Регион ${YELLOW}$region${GREEN} уже выбран"
+                        log_info "Регион ${MAGENTA}$region${GREEN} уже выбран"
                     fi
                 else
                     log_error "Неправильно. Попробуй ещё раз."
@@ -223,7 +218,7 @@ else
                 if [[ -f "$ipset_file" ]]; then
                     selected_ipset_files+=("$ipset_file")
                 else
-                    log_error "IPset список для региона '$region' не найден"
+                    log_warn "Список для региона ${MAGENTA}$region${NC} не найден – пропускаем"
                 fi
             done
             ;;

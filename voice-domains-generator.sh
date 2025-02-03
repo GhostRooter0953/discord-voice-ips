@@ -9,21 +9,11 @@ CYAN='\033[0;36m'
 BOLD='\033[1m'
 NC='\033[0m'
 
-log_info() {
-    echo -e "${CYAN}[INFO]${NC} $*"
-}
-
-log_success() {
-    echo -e "${GREEN}[OK]${NC} $*"
-}
-
-log_warn() {
-    echo -e "${YELLOW}[WARN]${NC} $*"
-}
-
-log_error() {
-    echo -e "${RED}[ERROR]${NC} $*"
-}
+line_skip()   { echo -e ". . ."; }
+log_info()    { echo -e "${CYAN}[INFO]${NC} $*"; }
+log_success() { echo -e "${GREEN}[OK]${NC} $*"; }
+log_warn()    { echo -e "${YELLOW}[WARN]${NC} $*"; }
+log_error()   { echo -e "${RED}[ERROR]${NC} $*"; }
 
 check_dependency() {
     if ! command -v "$1" &>/dev/null; then
@@ -52,7 +42,7 @@ if pgrep dnsmasq > /dev/null; then
     log_info "Перезапускаем dnsmasq..."
     pkill -SIGHUP dnsmasq
 else
-    log_error "Куда же подевался наш dnsmasq?"
+    log_warn "Куда же подевался наш dnsmasq?"
 fi
 
 resolve_domain() {
@@ -84,6 +74,7 @@ export TOTAL_DOMAINS
 : > "$ALL_DOMAINS_LIST"
 
 for region in "${regions[@]}"; do
+    line_skip
     log_info "Генерируем домены региона: ${YELLOW}$region${NC}"
     local_directory="./regions/$region"
 
@@ -112,12 +103,13 @@ for region in "${regions[@]}"; do
     execution_time=$((end_time - start_time))
     domains_resolved=$(wc -l < "$local_directory/${region}-voice-resolved" 2>/dev/null || echo 0)
 
-    echo -e "\n${GREEN}Готово${YELLOW}$region${GREEN}!${NC}"
-    echo -e "${BLUE}Время запуска:${NC} ${MAGENTA}$start_date${NC}"
-    echo -e "${BLUE}Время выполнения:${NC} ${MAGENTA}$(date -ud "@$execution_time" +'%H:%M:%S')${NC}"
-    echo -e "${BLUE}Доменов зарезолвили:${NC} ${MAGENTA}$domains_resolved${NC}"
-    echo -e "\n${GREEN}Что там на очереди?${YELLOW}$region${GREEN}!${NC}"
+    log_info "Время запуска: ${MAGENTA}$start_date${NC}"
+    log_info "Время выполнения: ${MAGENTA}$(date -ud "@$execution_time" +'%H:%M:%S')${NC}"
+    log_info "Доменов зарезолвили: ${MAGENTA}$domains_resolved${NC}"
 done
 
 ip_count=$(wc -l < "$ALL_IP_LIST" 2>/dev/null || echo 0)
-echo -e "\n${GREEN}Список \"${YELLOW}${BOLD}$ALL_IP_LIST${NC}${GREEN}\" обновлён, зарезолвили ${MAGENTA}$ip_count${GREEN} адрес(ов)${NC}\n"
+
+    line_skip
+    log_success "Обновлён список \"${YELLOW}${BOLD}$ALL_IP_LIST${NC}\""
+    log_success "Всего адресов зарезолвили: ${MAGENTA}$ip_count${NC}"
