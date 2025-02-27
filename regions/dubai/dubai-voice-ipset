@@ -1,12 +1,12 @@
-add unblock 66.22.242.6 -exist
-add unblock 66.22.242.7 -exist
-add unblock 66.22.242.9 -exist
-add unblock 66.22.242.133 -exist
-add unblock 66.22.242.5 -exist
-add unblock 66.22.242.10 -exist
-add unblock 66.22.242.8 -exist
-add unblock 66.22.242.135 -exist
-add unblock 66.22.242.134 -exist
-add unblock 66.22.242.137 -exist
-add unblock 66.22.242.132 -exist
-add unblock 66.22.242.136 -exist
+add unblock 66.22.242.6 timeout 0 -exist
+add unblock 66.22.242.7 timeout 0 -exist
+add unblock 66.22.242.9 timeout 0 -exist
+add unblock 66.22.242.133 timeout 0 -exist
+add unblock 66.22.242.5 timeout 0 -exist
+add unblock 66.22.242.10 timeout 0 -exist
+add unblock 66.22.242.8 timeout 0 -exist
+add unblock 66.22.242.135 timeout 0 -exist
+add unblock 66.22.242.134 timeout 0 -exist
+add unblock 66.22.242.137 timeout 0 -exist
+add unblock 66.22.242.132 timeout 0 -exist
+add unblock 66.22.242.136 timeout 0 -exist
