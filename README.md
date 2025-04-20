@@ -48,7 +48,7 @@
 ✅ Результаты сохраняются в фолдер `regions/<имя региона>`  
 
 ---
-> _Регионы генерируемые по умолчанию: `russia`, `bucharest`, `finland`, `frankfurt`, `madrid`, `milan`, `rotterdam`, `stockholm`, `warsaw`_  
+> _Регионы генерируемые по умолчанию: `bucharest`, `finland`, `frankfurt`, `madrid`, `milan`, `rotterdam`, `stockholm`, `warsaw`_  
 > _Отредактируйте переменную `DEFAULT_REGIONS` в `voice-domains-generator.sh` перед запуском, если есть необходимость изменить этот пул_  
 ---
 
