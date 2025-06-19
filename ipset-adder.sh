@@ -1,4 +1,4 @@
-#!/bin/bash
+https://github.com/GhostRooter0953/discord-voice-ips/blob/light/ipset-adder.sh#!/bin/bash
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -93,7 +93,7 @@ prepare_ipset_files() {
 ensure_ipset_exists() {
     local ipset_name="$1"
     if ! ipset list "$ipset_name" &>/dev/null; then
-        ipset create "$ipset_name" hash:ip
+        ipset create "$ipset_name" hash:ip timeout 86400
         log_success "Создан IPset лист: ${YELLOW}$ipset_name${NC}"
     else
         log_info "Используем существующий IPset лист: ${YELLOW}$ipset_name${NC}"
@@ -115,7 +115,6 @@ if [[ "$#" -gt 0 ]]; then
     else
         ipset_name="$1"
         log_info "Запущен режим ${BLUE}list${NC}"
-        # log_info "Используем IPset лист: ${YELLOW}$ipset_name${NC}"
         prepare_ipset_files "$ipset_name"
         ensure_ipset_exists "$ipset_name"
         selected_ipset_files=("$main_ipset_list_file" "$voice_ipset_list_file")
