@@ -1,4 +1,4 @@
-https://github.com/GhostRooter0953/discord-voice-ips/blob/light/ipset-adder.sh#!/bin/bash
+#!/bin/bash
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
