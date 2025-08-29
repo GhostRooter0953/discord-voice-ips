@@ -3,7 +3,7 @@
 ,
   {"hostname":"canary.discord.com","ip":"162.159.128.233"}
 ,
-  {"hostname":"dis.gd","ip":"188.114.98.232"}
+  {"hostname":"dis.gd","ip":"8.47.69.0"}
 ,
   {"hostname":"ptb.discord.com","ip":"162.159.128.233"}
 ,
@@ -17,23 +17,23 @@
 ,
   {"hostname":"discord.design","ip":"104.21.112.1"}
 ,
-  {"hostname":"discord.dev","ip":"188.114.96.1"}
+  {"hostname":"discord.dev","ip":"104.21.72.221"}
 ,
   {"hostname":"discord.gg","ip":"162.159.130.234"}
 ,
   {"hostname":"discord.gift","ip":"104.21.25.51"}
 ,
-  {"hostname":"discord.gifts","ip":"188.114.96.1"}
+  {"hostname":"discord.gifts","ip":"104.21.82.160"}
 ,
   {"hostname":"discord.media","ip":"162.159.128.235"}
 ,
-  {"hostname":"discord.new","ip":"188.114.96.1"}
+  {"hostname":"discord.new","ip":"104.21.89.187"}
 ,
   {"hostname":"discord.store","ip":"23.227.38.74"}
 ,
   {"hostname":"discord.tools","ip":""}
 ,
-  {"hostname":"discordactivities.com","ip":"188.114.98.232"}
+  {"hostname":"discordactivities.com","ip":"8.47.69.0"}
 ,
   {"hostname":"discordapp.com","ip":"162.159.129.233"}
 ,
@@ -53,9 +53,9 @@
 ,
   {"hostname":"discordpartygames.com","ip":"13.248.169.48"}
 ,
-  {"hostname":"discordsays.com","ip":"188.114.98.232"}
+  {"hostname":"discordsays.com","ip":"8.47.69.0"}
 ,
-  {"hostname":"discordsez.com","ip":"188.114.98.232"}
+  {"hostname":"discordsez.com","ip":"8.47.69.4"}
 ,
-  {"hostname":"discordstatus.com","ip":"18.165.140.101"}
+  {"hostname":"discordstatus.com","ip":"3.174.113.53"}
 ]
